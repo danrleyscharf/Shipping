@@ -51,6 +51,9 @@ private static final long serialVersionUID = 1L;
 	
 	@Column(nullable = false)
 	private Double profundidade;
+
+	@Column(nullable = false)
+	private boolean entregue;
 		
 	@ManyToOne
 	@JoinColumn(name = "id_entidadeOrigem", referencedColumnName = "id")

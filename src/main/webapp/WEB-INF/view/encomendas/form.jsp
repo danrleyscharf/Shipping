@@ -48,6 +48,12 @@
 								<input type="text" id="id" name="id" value="${encomendas.id}"
 								readonly class="form-control" />
 							</div>		
+
+							<div class="form-group">
+								<label for="entregue">Entregue:</label>
+								<input type="checkbox" id="entregue" name="entregue" readonly
+								class="form-control" value="${encomendas.entregue}" />
+							</div>
 							
 							<div class="form-group">
 								<label for="descricao">Descrição:</label>

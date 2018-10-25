@@ -29,4 +29,8 @@ private static final long serialVersionUID = 1L;
 	@Column()
 	private boolean sucesso;
 
+	@ManyToOne
+	@JoinColumn(name = "id_encomenda", referencedColumnName = "id")
+	private Encomendas encomendas;
+	
 }
