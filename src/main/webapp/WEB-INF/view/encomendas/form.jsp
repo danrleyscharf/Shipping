@@ -114,9 +114,9 @@
 								<select id="entidadeOrigem" name="entidadeOrigem" class="form-control">
 									<option value="">(Selecione)</option>
 									<c:forEach var="entidadeOrigem" items="${entidades}">
-										<option value="${entidades.id}"
-												${entidades.id==encomendas.entidades.id ? 'selected' : ''}>
-										${entidades.nome}</option>
+										<option value="${entidadeOrigem.id}"
+												${entidadeOrigem.id==encomendas.entidades.id ? 'selected' : ''}>
+										${entidadeOrigem.nome}</option>
 									</c:forEach>
 								</select>	
 							</div>
