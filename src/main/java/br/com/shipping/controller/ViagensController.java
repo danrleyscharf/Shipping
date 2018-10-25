@@ -60,7 +60,7 @@ public class ViagensController {
 	@RequestMapping(value = "/", method = RequestMethod.POST, 
 			produces = "application/json")
 	@ResponseBody
-	public String salvar(@Valid Viagens viagens, BindingResult erros, 
+	public String salvar(@Valid Viagens viagens, Encomendas_Viagens encomendas_viagens BindingResult erros, 
 			Model model){
 		JSONObject retorno = new JSONObject();
 		try{
@@ -69,6 +69,7 @@ public class ViagensController {
 				retorno.put("mensagem", "Falha ao salvar registro!");
 			}else{
 				viagensRepository.save(viagens);
+				encomendas_viagensRepository.save(encomendas_viagens)
 				
 				retorno.put("id", viagens.getId());
 				retorno.put("situacao", "OK");
