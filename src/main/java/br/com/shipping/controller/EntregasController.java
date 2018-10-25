@@ -33,13 +33,13 @@ public class EntregasController {
 	
 	@RequestMapping(value = "/form", method = RequestMethod.GET)
 	public String form(Model model){
-		model.addAttribute("encomendas", encomendasRepository.findAll());
+		model.addAttribute("encomendas", encomendasRepository.findByEntregue(false));
 		return "entregas/form";
 	}
 	
 	@RequestMapping(value = "/form/{id}", method = RequestMethod.GET)
 	public String form(@PathVariable Long id, Model model){
-		model.addAttribute("encomendas", encomendasRepository.findAll());
+		model.addAttribute("encomendas", encomendasRepository.findByEntregue(false));
 		model.addAttribute("entregas", entregasRepository.findOne(id));
 		return "entregas/form";
 	}

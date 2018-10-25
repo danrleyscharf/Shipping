@@ -48,6 +48,18 @@
 								<input type="text" id="id" name="id" value="${entregas.id}"
 								readonly class="form-control" />
 							</div>		
+
+							<div class="form-group">
+								<label for="encomendas">Encomenda:</label>
+									<select id="encomendas" name="encomendas" class="form-control">
+										<option value="">(Selecione)</option>
+										<c:forEach var="encomenda" items="${encomendas}">
+											<option value="${encomenda.id}"
+													${encomenda.id==entregas.encomendas.id ? 'selected' : ''}>
+											${encomenda.chaveRastreio}</option>
+										</c:forEach>
+									</select>	
+							</div>
 							
 							<div class="form-group">
 								<label for="dataEntrega">Data da entrega:</label>
@@ -63,17 +75,11 @@
 									class="form-control" value="${entregas.obs}" >
 								</textarea>
 							</div>
-							
+
 							<div class="form-group">
-							<label for="estados">UF:</label>
-								<select id="estados" name="estados" class="form-control">
-									<option value="">(Selecione)</option>
-									<c:forEach var="estados" items="${estados}">
-										<option value="${estados.id}"
-												${estados.id==cidades.estados.id ? 'selected' : ''}>
-										${estados.uf}</option>
-									</c:forEach>
-								</select>	
+								<label for="sucesso">Entrega Realizada:</label>
+								<input type="checkbox" id="sucesso" name="sucesso"
+								class="form-control" value="${entregas.sucesso}" />
 							</div>
 							
 							<button type="reset" class="btn btn-default">Limpar</button>

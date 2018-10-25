@@ -22,7 +22,7 @@
 				closeOnConfirm: false 
 				}, 
 				function(){   
-					var destino = '<c:url value="/cidades/delete/"/>' + id;
+					var destino = '<c:url value="/entregas/delete/"/>' + id;
 					$.ajax({
 						type : 'POST',
 						url : destino,
@@ -47,8 +47,8 @@
 
 	<jsp:body>
 		<section class="wrapper">
-			<h1>Lista de Cidades</h1>
-			<a class="btn btn-primary" href="<c:url value="/cidades/form"/>" 
+			<h1>Lista de Entregas</h1>
+			<a class="btn btn-primary" href="<c:url value="/entregas/form"/>" 
 				id="novo"><i class="fa fa-plus" aria-hidden="true"></i> Novo</a>
 			<br />
 			<div class="spacer"></div>
@@ -58,25 +58,29 @@
 				<thead>
 					<tr>
 						<th class="col-md-2" >Código</th>
-						<th>Cód. IBGE</th>
-						<th>Cidade</th>
-						<th>UF</th>
+						<th>Chave</th>
+						<th>Data</th>
+						<th>Sucesso</th>
+						<th>Observações</th>
 						<th class="col-md-2">Ação</th>
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="cidades" items="${cidades}">
-				<tr id="row_${cidades.id}">
-					<td>${cidades.id}</td>
-					<td>${cidades.codIBGE}</td>
-					<td>${cidades.cidade}</td>
-					<td>${cidades.estados.uf}</td>
+				<c:forEach var="entrega" items="${entregas}">
+				<tr id="row_${entrega.id}">
+					<td>${entrega.id}</td>
+					<td>${entrega.encomendas.chaveRastreio}</td>
+					<td>${entrega.dataEntrega}</td>
+					<td>
+						<input type="checkbox" value=${entrega.sucesso}
+					</td>
+					<td>${entrega.obs}</td>
 					<td>
 						<a class="edit btn btn-primary" title="Editar"
-							href="<c:url value="/cidades/form/${cidades.id}"/>">
+							href="<c:url value="/entregas/form/${entrega.id}"/>">
 							<i class="fa fa-pencil" aria-hidden="true"></i></a>
 						<a class="remove btn btn-danger" title="Remover"
-							href="javascript:remover(${cidades.id})">
+							href="javascript:remover(${entrega.id})">
 							<i class="fa fa-trash" aria-hidden="true"></i></a>
 					</td>
 				</tr>
