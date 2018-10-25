@@ -89,7 +89,10 @@ public class ViagensController {
 		JSONObject retorno = new JSONObject();
 		
 		try{
+			Encomendas_Viagens encomendas_viagens = encomendas_viagensRepository.findByIdViagem(id);
+			encomendas_viagensRepository.delete(idEncomendas_Viagens.id);
 			viagensRepository.delete(id);
+			
 			retorno.put("situacao", "OK");
 			retorno.put("mensagem", "Registro removido com sucesso!");
 		}catch (Exception ex){
