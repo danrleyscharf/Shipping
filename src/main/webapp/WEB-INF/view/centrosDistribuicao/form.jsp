@@ -40,7 +40,7 @@
 				<div class="row">
 		            <div class="col-md-3 col-md-offset-3">	
 		            	<h1>Cadastro de Centros de Distribuição</h1>
-						<form id="frm" action="<c:url value="/cidades/"/>"
+						<form id="frm" action="<c:url value="/centrosDistribuicao/"/>"
 								method="POST" class="well span6">
 							
 							<div class="form-group">
@@ -59,9 +59,9 @@
 							<label for="cidades">Cidade:</label>
 								<select id="cidades" name="cidades" class="form-control">
 									<option value="">(Selecione)</option>
-									<c:forEach var="cidades" items="${cidades}">
-										<option value="${cidades.id}"
-												${cidades.id==centrosDistribuicao.cidades.id ? 'selected' : ''}>
+									<c:forEach var="cidade" items="${cidades}">
+										<option value="${cidade.id}"
+											${cidade.id==centrosDistribuicao.cidades.id ? 'selected' : ''}>
 										${centrosDistribuicao.cidades}</option>
 									</c:forEach>
 								</select>	

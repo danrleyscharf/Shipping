@@ -68,21 +68,21 @@
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="cidades" items="${encomendas}">
+				<c:forEach var="encomenda" items="${encomendas}">
 				<tr id="row_${encomendas.id}">
-					<td>${encomendas.id}</td>
-					<td>${encomendas.descricao}</td>
-					<td>${encomendas.chaveRastreio}</td>
-					<td>${encomendas.dataColeta}</td>
-					<td>${encomendas.prevEntrega}</td>
-				<!-- <td>${encomendas.entidadeOrigem.cidades.cidade}</td>
-					<td>${encomendas.entidadeDestino.cidades.cidade}</td> -->	
+					<td>${encomenda.id}</td>
+					<td>${encomenda.descricao}</td>
+					<td>${encomenda.chaveRastreio}</td>
+					<td>${encomenda.dataColeta}</td>
+					<td>${encomenda.prevEntrega}</td>
+				    <td>${encomenda.entidadeOrigem.cidades.cidade}</td>
+					<td>${encomenda.entidadeDestino.cidades.cidade}</td>
 					<td>
 						<a class="edit btn btn-primary" title="Editar"
-							href="<c:url value="/encomendas/form/${encomendas.id}"/>">
+							href="<c:url value="/encomendas/form/${encomenda.id}"/>">
 							<i class="fa fa-pencil" aria-hidden="true"></i></a>
 						<a class="remove btn btn-danger" title="Remover"
-							href="javascript:remover(${encomendas.id})">
+							href="javascript:remover(${encomenda.id})">
 							<i class="fa fa-trash" aria-hidden="true"></i></a>
 					</td>
 				</tr>
