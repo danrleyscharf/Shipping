@@ -63,4 +63,14 @@ private static final long serialVersionUID = 1L;
 	@JoinColumn(name = "id_entidadeDestino", referencedColumnName = "id")
 	private Entidades entidadeDestino;
 
+	@ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                CascadeType.PERSIST,
+                CascadeType.MERGE
+            })
+    @JoinTable(name = "encomendas_viagens",
+            joinColumns = { @JoinColumn(name = "id_encomendas") },
+            inverseJoinColumns = { @JoinColumn(name = "id_viagens") })
+    private Set<Viagens> viagens = new HashSet<>();
+
 }

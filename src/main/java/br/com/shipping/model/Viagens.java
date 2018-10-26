@@ -47,4 +47,12 @@ private static final long serialVersionUID = 1L;
 	@JoinColumn(name = "id_veiculos", referencedColumnName = "id")
 	private Veiculos veiculos;
 
+	@ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                CascadeType.PERSIST,
+                CascadeType.MERGE
+            },
+            mappedBy = "viagens")
+    private Set<Encomendas> encomendas = new HashSet<>();
+
 }
