@@ -125,10 +125,6 @@
                           <i class="fa fa-futbol-o"></i>
                           <span>Materiais</span>
                       </a>
-                      <ul class="sub">
-                          <li><a  href="general.html">Cadastro</a></li>
-                          <li><a  href="buttons.html">Empréstimo</a></li>
-                      </ul>
                   </li>
 
                   <li class="sub-menu">
@@ -141,22 +137,6 @@
                       </ul>
                   </li>
 
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-key"></i>
-                          <span>Usuários</span>
-                      </a>
-                  </li>
-
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-tasks"></i>
-                          <span>Forms</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="form_component.html">Form Components</a></li>
-                      </ul>
-                  </li>
               </ul>
               <!-- sidebar menu end-->
           </div>
