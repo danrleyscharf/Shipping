@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import br.com.shipping.model.Veiculos;
 import br.com.shipping.model.Viagens;
 import br.com.shipping.repository.CentrosDistribuicaoRepository;
 import br.com.shipping.repository.FuncionariosRepository;
@@ -56,11 +57,10 @@ public class ViagensController {
 		return "viagens/form";
 	}
 	
-	
 	@RequestMapping(value = "/", method = RequestMethod.POST, 
 			produces = "application/json")
 	@ResponseBody
-	public String salvar(@Valid Viagens viagens, Encomendas_Viagens encomendas_viagens BindingResult erros, 
+	public String salvar(@Valid Veiculos veiculos, BindingResult erros, 
 			Model model){
 		JSONObject retorno = new JSONObject();
 		try{
@@ -68,10 +68,9 @@ public class ViagensController {
 				retorno.put("situacao", "ERRO");
 				retorno.put("mensagem", "Falha ao salvar registro!");
 			}else{
-				viagensRepository.save(viagens);
-				encomendas_viagensRepository.save(encomendas_viagens)
+				veiculosRepository.save(veiculos);
 				
-				retorno.put("id", viagens.getId());
+				retorno.put("id", veiculos.getId());
 				retorno.put("situacao", "OK");
 				retorno.put("mensagem", "Registro salvo com sucesso!");
 			}
@@ -89,10 +88,7 @@ public class ViagensController {
 		JSONObject retorno = new JSONObject();
 		
 		try{
-			Encomendas_Viagens encomendas_viagens = encomendas_viagensRepository.findByIdViagem(id);
-			encomendas_viagensRepository.delete(idEncomendas_Viagens.id);
-			viagensRepository.delete(id);
-			
+			veiculosRepository.delete(id);
 			retorno.put("situacao", "OK");
 			retorno.put("mensagem", "Registro removido com sucesso!");
 		}catch (Exception ex){
@@ -102,5 +98,6 @@ public class ViagensController {
 		
 		return retorno.toString();
 	}
+	
 
 }

@@ -52,7 +52,7 @@
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="index.html" class="logo"><b>Clube Social</b></a>
+            <a href="index.html" class="logo"><b>SHIPPING</b></a>
             <!--logo end-->
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
@@ -72,7 +72,7 @@
               <ul class="sidebar-menu" id="nav-accordion">
 			      <li>
 	              	  	<p class="centered"><a href="profile.html"><img src="<c:url value="/assets/img/ui-sam.jpg" />" class="img-circle" width="60"></a></p>
-	              		<h5 class="centered">Clube Social</h5>
+	              		<h5 class="centered">Shipping</h5>
 				  </li>
                   <li class="sub-menu">
                       <a href="javascript:;" >
@@ -80,8 +80,10 @@
                           <span>Cadastros</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="<c:url value="/categoria/"/>">Categorias</a></li>
-                          <li><a  href="<c:url value="/produto/"/>">Produtos</a></li>
+                      	  <li><a  href="<c:url value="/cidades/"/>">Cidades</a></li>
+                      	  <li><a  href="<c:url value="/tiposDespesas/"/>">Tipos de Despesas</a></li>
+                      	  <li><a  href="<c:url value="/etinerarios/"/>">Etinerários</a></li>
+                          <li><a  href="<c:url value="/estados/"/>">Estados</a></li>
                       </ul>
                   </li>
 
@@ -91,9 +93,8 @@
                           <span>Pessoas</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="general.html">Associados</a></li>
-                          <li><a  href="buttons.html">Dependentes</a></li>
-                          <li><a  href="panels.html">Funcionários</a></li>
+                          <li><a  href="<c:url value="/funcionarios/"/>">Funcionários</a></li>
+                      	  <li><a  href="<c:url value="/entidades/"/>">Entidades</a></li>
                       </ul>
                   </li>
 
@@ -103,19 +104,19 @@
                           <span>Espaços</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="general.html">Cadastro</a></li>
-                          <li><a  href="buttons.html">Locação</a></li>
+                          <li><a  href="<c:url value="/centrosDistribuicao/"/>">Centros de Distribuição</a></li>
                       </ul>
                   </li>
 
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-street-view"></i>
-                          <span>Atividades</span>
+                          <span>Movimentações</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="general.html">Cadastro</a></li>
-                          <li><a  href="buttons.html">Matrícula</a></li>
+                          <li><a  href="<c:url value="/despesas/"/>">Despesas</a></li>
+                          <li><a  href="<c:url value="/encomendas/"/>">Encomendas</a></li>
+                          <li><a  href="<c:url value="/viagens/"/>">Viagens</a></li>
                       </ul>
                   </li>
 
@@ -135,6 +136,9 @@
                           <i class="fa fa-bank"></i>
                           <span>Patrimônio</span>
                       </a>
+                      <ul class="sub">
+                          <li><a  href="<c:url value="/veiculos/"/>">Veículos</a></li>
+                      </ul>
                   </li>
 
                   <li class="sub-menu">

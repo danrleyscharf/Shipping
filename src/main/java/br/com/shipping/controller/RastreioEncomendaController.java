@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.shipping.model.Encomendas;
+import br.com.shipping.repository.CentrosDistribuicaoRepository;
 import br.com.shipping.repository.EncomendasRepository;
 import br.com.shipping.repository.ViagensRepository;
 import br.com.shipping.repository.EntregasRepository;
 
 @Controller
 @RequestMapping("/rastreioEncomenda")
-public class EncomendasController {
+public class RastreioEncomendaController {
 
 	@Autowired
 	private EncomendasRepository encomendasRepository;
@@ -27,9 +28,12 @@ public class EncomendasController {
     private ViagensRepository viagensRepository;
     @Autowired 
     private EntregasRepository entregasRepository;
+    @Autowired 
+    private CentrosDistribuicaoRepository centrosDistribuicaoRepository;
+    
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public String list(Model model){
+	public String list(@PathVariable Long id, Model model){
         model.addAttribute("centrosDistribuicao", centrosDistribuicaoRepository.findAll());
         model.addAttribute("entregas", entregasRepository.findAll());
 		model.addAttribute("encomendas", encomendasRepository.findOne(id));
@@ -53,9 +57,9 @@ public class EncomendasController {
 				retorno.put("situacao", "ERRO");
 				retorno.put("mensagem", "Falha ao salvar registro!");
 			}else{
-				encomendas = encomendasRepository.findByChaveRastreio(chaveRastreio);
+				encomendas = encomendasRepository.findByChaveRastreio(encomendas.getChaveRastreio());
 				
-				retorno.put("id", encomendas.id);
+				retorno.put("id", encomendas.getId());
 			}
 		}catch (Exception ex){
 			retorno.put("situacao", "ERRO");

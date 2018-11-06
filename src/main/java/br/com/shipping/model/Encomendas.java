@@ -2,13 +2,19 @@ package br.com.shipping.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import lombok.Data;
@@ -71,6 +77,6 @@ private static final long serialVersionUID = 1L;
     @JoinTable(name = "encomendas_viagens",
             joinColumns = { @JoinColumn(name = "id_encomendas") },
             inverseJoinColumns = { @JoinColumn(name = "id_viagens") })
-    private Set<Viagens> viagens = new HashSet<>();
+    private Set<Viagens> viagens = new HashSet();
 
 }

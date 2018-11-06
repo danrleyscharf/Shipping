@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.shipping.model.Cidades;
+import br.com.shipping.model.Etinerarios;
 import br.com.shipping.repository.CidadesRepository;
 import br.com.shipping.repository.EtinerariosRepository;
 
 @Controller
 @RequestMapping("/etinerarios")
-public class CidadesController {
+public class EtinerariosController {
 
 	@Autowired
 	private CidadesRepository cidadesRepository;

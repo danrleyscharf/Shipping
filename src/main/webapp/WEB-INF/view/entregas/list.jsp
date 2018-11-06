@@ -71,9 +71,7 @@
 					<td>${entrega.id}</td>
 					<td>${entrega.encomendas.chaveRastreio}</td>
 					<td>${entrega.dataEntrega}</td>
-					<td>
-						<input type="checkbox" value=${entrega.sucesso}
-					</td>
+					<td>${entrega.sucesso}</td>
 					<td>${entrega.obs}</td>
 					<td>
 						<a class="edit btn btn-primary" title="Editar"
