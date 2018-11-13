@@ -62,7 +62,7 @@
 									<c:forEach var="cidade" items="${cidades}">
 										<option value="${cidade.id}"
 											${cidade.id==centrosDistribuicao.cidades.id ? 'selected' : ''}>
-										${centrosDistribuicao.cidades}</option>
+										${cidade.cidade}</option>
 									</c:forEach>
 								</select>	
 							</div>

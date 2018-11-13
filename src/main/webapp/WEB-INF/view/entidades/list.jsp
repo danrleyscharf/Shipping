@@ -69,7 +69,7 @@
 				<c:forEach var="entidades" items="${entidades}">
 				<tr id="row_${entidades.id}">
 					<td>${entidades.id}</td>
-					<td>${entidades.Nome}</td>
+					<td>${entidades.nome}</td>
 					<td>${entidades.endereco + ", " + entidades.numero}</td>
 					<td>${entidades.bairro}</td>
 					<td>${entidades.cidades.cidade}</td>

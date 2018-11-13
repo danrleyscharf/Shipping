@@ -27,13 +27,13 @@ public class CentrosDistribuicaoController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String list(Model model){
-		model.addAttribute("cidades", cidadesRepository.findAll());
+		model.addAttribute("centrosDistribuicao", centrosDistribuicaoRepository.findAll());
 		return "centrosDistribuicao/list";
 	}
 	
 	@RequestMapping(value = "/form", method = RequestMethod.GET)
 	public String form(Model model){
-		model.addAttribute("centrosDistribuicao", centrosDistribuicaoRepository.findAll());
+		model.addAttribute("cidades", cidadesRepository.findAll());
 		return "centrosDistribuicao/form";
 	}	
 	

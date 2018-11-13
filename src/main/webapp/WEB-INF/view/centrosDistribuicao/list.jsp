@@ -64,17 +64,17 @@
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="cdd" items="${centrosDistribuicao}">
-				<tr id="row_${cdd.id}">
-					<td>${cdd.id}</td>
-					<td>${cdd.descricao}</td>
-					<td>${cdd.cidades.cidade}</td>
+				<c:forEach var="centrosDistribuicao" items="${centrosDistribuicao}">
+				<tr id="row_${centrosDistribuicao.id}">
+					<td>${centrosDistribuicao.id}</td>
+					<td>${centrosDistribuicao.descricao}</td>
+					<td>${centrosDistribuicao.cidades.cidade}</td>
 					<td>
 						<a class="edit btn btn-primary" title="Editar"
-							href="<c:url value="/centrosDistribuicao/form/${cdd.id}"/>">
+							href="<c:url value="/centrosDistribuicao/form/${centrosDistribuicao.id}"/>">
 							<i class="fa fa-pencil" aria-hidden="true"></i></a>
 						<a class="remove btn btn-danger" title="Remover"
-							href="javascript:remover(${cdd.id})">
+							href="javascript:remover(${centrosDistribuicao.id})">
 							<i class="fa fa-trash" aria-hidden="true"></i></a>
 					</td>
 				</tr>

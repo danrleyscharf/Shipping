@@ -81,7 +81,7 @@
                       </a>
                       <ul class="sub">
                       	  <li><a  href="<c:url value="/cidades/"/>">Cidades</a></li>
-                      	  <li><a  href="<c:url value="/tiposDespesas/"/>">Tipos de Despesas</a></li>
+                      	  <li><a  href="<c:url value="/tiposDespesa/"/>">Tipos de Despesas</a></li>
                       	  <li><a  href="<c:url value="/etinerarios/"/>">Etinerários</a></li>
                           <li><a  href="<c:url value="/estados/"/>">Estados</a></li>
                       </ul>
