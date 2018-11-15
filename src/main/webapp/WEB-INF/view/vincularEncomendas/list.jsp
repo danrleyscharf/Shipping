@@ -22,7 +22,7 @@
 				closeOnConfirm: false 
 				}, 
 				function(){   
-					var destino = '<c:url value="/viagens/delete/"/>' + id;
+					var destino = '<c:url value="/encomendas/delete/"/>' + id;
 					$.ajax({
 						type : 'POST',
 						url : destino,
@@ -47,8 +47,8 @@
 
 	<jsp:body>
 		<section class="wrapper">
-			<h1>Lista de Viagens</h1>
-			<a class="btn btn-primary" href="<c:url value="/viagens/form"/>" 
+			<h1>Lista de Encomendas</h1>
+			<a class="btn btn-primary" href="<c:url value="/encomendas/form"/>" 
 				id="novo"><i class="fa fa-plus" aria-hidden="true"></i> Novo</a>
 			<br />
 			<div class="spacer"></div>
@@ -58,33 +58,32 @@
 				<thead>
 					<tr>
 						<th class="col-md-2" >Código</th>
-						<th>Data Saida</th>
-						<th>Cdd Origem</th>
-						<th>Cdd Destino</th>
-						<th>Funcionario</th>
-						<th>Veiculo</th>
+						<th>Descrição</th>
+						<th>Chave de Rastreio</th>
+						<th>Data da Coleta</th>
+						<th>Previsão de Entrega</th>
+						<th>Origem</th>
+						<th>Destino</th>
 						<th class="col-md-2">Ação</th>
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="viagens" items="${viagens}">
-				<tr id="row_${viagens.id}">
-					<td>${viagens.id}</td>
-					<td>${viagens.dataSaida}</td>
-					<td>${viagens.cddOrigem.descricao}</td>
-					<td>${viagens.cddDestino.descricao}</td>
-					<td>${viagens.funcionarios.nome}</td>
-					<td>${viagens.veiculos.descricao}</td>
+				<c:forEach var="encomenda" items="${encomendas}">
+				<tr id="row_${encomendas.id}">
+					<td>${encomenda.id}</td>
+					<td>${encomenda.descricao}</td>
+					<td>${encomenda.chaveRastreio}</td>
+					<td>${encomenda.dataColeta}</td>
+					<td>${encomenda.prevEntrega}</td>
+				    <td>${encomenda.entidadeOrigem.cidades.cidade}</td>
+					<td>${encomenda.entidadeDestino.cidades.cidade}</td>
 					<td>
 						<a class="edit btn btn-primary" title="Editar"
-							href="<c:url value="/viagens/form/${viagens.id}"/>">
+							href="<c:url value="/encomendas/form/${encomenda.id}"/>">
 							<i class="fa fa-pencil" aria-hidden="true"></i></a>
 						<a class="remove btn btn-danger" title="Remover"
-							href="javascript:remover(${viagens.id})">
+							href="javascript:remover(${encomenda.id})">
 							<i class="fa fa-trash" aria-hidden="true"></i></a>
-						<a class="edit btn btn-primary" title="Vincular"
-							href="<c:url value="/vincularEncomendas/form/${viagens.id}"/>">
-							<i class="li_clip" aria-hidden="true"></i></a>	
 					</td>
 				</tr>
 			</c:forEach>

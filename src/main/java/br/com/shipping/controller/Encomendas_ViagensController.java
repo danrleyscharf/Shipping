@@ -13,29 +13,35 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.shipping.model.Encomendas;
+import br.com.shipping.model.Encomendas_Viagens;
 import br.com.shipping.repository.EncomendasRepository;
+import br.com.shipping.repository.Encomendas_ViagensRepository;
 import br.com.shipping.repository.ViagensRepository;
 
 @Controller
-@RequestMapping("/encomendas_viagens")
+@RequestMapping("/vincularEncomendas")
 public class Encomendas_ViagensController {
 
+	@Autowired
+	private Encomendas_ViagensRepository encomendas_ViagensRepository;
 	@Autowired
 	private EncomendasRepository encomendasRepository; 
 	@Autowired
 	private ViagensRepository viagensRepository;
-	
+		
 	@RequestMapping(value = "/form/{id}", method = RequestMethod.GET)
 	public String form(@PathVariable Long id, Model model){
-		model.addAttribute("encomendas", encomendasRepository.findAll());
+		model.addAttribute("encomendas", encomendasRepository.findByEntregue(false));
 		model.addAttribute("viagens", viagensRepository.findOne(id));
-		return "encomendas_viagens/form";
+		return "vincularEncomendas/form";
 	}
 	
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST, 
 			produces = "application/json")
 	@ResponseBody
+	
+	
 	public String salvar(@Valid Encomendas encomendas, BindingResult erros, 
 			Model model){
 		JSONObject retorno = new JSONObject();
@@ -57,21 +63,29 @@ public class Encomendas_ViagensController {
 		return retorno.toString();
 	}
 	
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST,
+	@RequestMapping(value = "/adicionar/{idViagem}/{idEncomenda}", method = RequestMethod.POST,
 			produces="application/json")
 	@ResponseBody
-	public String excluir(@PathVariable Long id){
+	public String adicionar(@Valid Encomendas_Viagens encomendas_viagens, @PathVariable Long idViagem, 
+			@PathVariable Long idEncomenda, BindingResult erros, Model model){
 		JSONObject retorno = new JSONObject();
-		
 		try{
-			encomendasRepository.delete(id);
-			retorno.put("situacao", "OK");
-			retorno.put("mensagem", "Registro removido com sucesso!");
+			if (erros.hasErrors()){
+				retorno.put("situacao", "ERRO");
+				retorno.put("mensagem", "Falha ao salvar registro!");
+			}else{
+				encomendas_ViagensRepository.save(encomendas_viagens);
+				
+				retorno.put("id", encomendas_viagens.getId());
+				retorno.put("idViagem", idViagem);
+				retorno.put("idEncomenda", idEncomenda);
+				retorno.put("situacao", "OK");
+				retorno.put("mensagem", "Registro salvo com sucesso!");
+			}
 		}catch (Exception ex){
 			retorno.put("situacao", "ERRO");
-			retorno.put("mensagem", "Falha ao remover registro!");
+			retorno.put("mensagem", "Falha ao salvar registro!");
 		}
-		
 		return retorno.toString();
 	}
 	
