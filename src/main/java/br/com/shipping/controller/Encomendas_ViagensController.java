@@ -89,4 +89,30 @@ public class Encomendas_ViagensController {
 		return retorno.toString();
 	}
 	
+	@RequestMapping(value = "/remover/{idViagem}/{idEncomenda}", method = RequestMethod.POST,
+			produces="application/json")
+	@ResponseBody
+	public String remover(@Valid Encomendas_Viagens encomendas_viagens, @PathVariable Long idViagem, 
+			@PathVariable Long idEncomenda, BindingResult erros, Model model){
+		JSONObject retorno = new JSONObject();
+		try{
+			if (erros.hasErrors()){
+				retorno.put("situacao", "ERRO");
+				retorno.put("mensagem", "Falha ao salvar registro!");
+			}else{
+				encomendas_ViagensRepository.save(encomendas_viagens);
+				
+				retorno.put("id", encomendas_viagens.getId());
+				retorno.put("idViagem", idViagem);
+				retorno.put("idEncomenda", idEncomenda);
+				retorno.put("situacao", "OK");
+				retorno.put("mensagem", "Registro salvo com sucesso!");
+			}
+		}catch (Exception ex){
+			retorno.put("situacao", "ERRO");
+			retorno.put("mensagem", "Falha ao salvar registro!");
+		}
+		return retorno.toString();
+	}
+	
 }

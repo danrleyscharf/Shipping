@@ -78,7 +78,7 @@
 				closeOnConfirm: false 
 				}, 
 				function(){   
-					var destino = '<c:url value="/Encomendas_ViagensController/adicionar/' + id + '/' + id '"/>';
+					var destino = '<c:url value="/Encomendas_ViagensController/remover/' + id + '/' + id '"/>';
 					$.ajax({
 						type : 'POST',
 						url : destino,
