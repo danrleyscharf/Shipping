@@ -63,10 +63,10 @@ public class Encomendas_ViagensController {
 		return retorno.toString();
 	}
 	
-	@RequestMapping(value = "/adicionar/{idViagem}/{idEncomenda}", method = RequestMethod.POST,
+	@RequestMapping(value = "/adicionar/{idViagem}/{idEncomenda}", method = RequestMethod.GET,
 			produces="application/json")
 	@ResponseBody
-	public String adicionar(@Valid Encomendas_Viagens encomendas_viagens, @PathVariable Long idViagem, 
+	public String adicionar(@PathVariable Long idViagem, 
 			@PathVariable Long idEncomenda, BindingResult erros, Model model){
 		JSONObject retorno = new JSONObject();
 		try{
@@ -74,11 +74,9 @@ public class Encomendas_ViagensController {
 				retorno.put("situacao", "ERRO");
 				retorno.put("mensagem", "Falha ao salvar registro!");
 			}else{
-				encomendas_ViagensRepository.save(encomendas_viagens);
 				
-				retorno.put("id", encomendas_viagens.getId());
-				retorno.put("idViagem", idViagem);
-				retorno.put("idEncomenda", idEncomenda);
+				//encomendas_ViagensRepository.save(encomendas_viagens);
+				
 				retorno.put("situacao", "OK");
 				retorno.put("mensagem", "Registro salvo com sucesso!");
 			}

@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib tagdir="/WEB-INF/tags/layout" prefix="layout"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <layout:template>
 	<jsp:attribute name="cssEspecificos">
 	</jsp:attribute>
@@ -33,6 +34,13 @@
 				return false;
 			}); //Fim submit
 		</script>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script type="text/javascript">		
+		$( function() {
+		    $( "#dataNasc" ).datepicker();
+		  } );
+		</script>
 	</jsp:attribute>
 
 	<jsp:body>
@@ -63,8 +71,9 @@
 							
 							<div class="form-group">
 								<label for="dataNasc">Data Nascimento:</label>
-								<input type="date" id="dataNasc" name="dataNasc"
-								class="form-control" value="${entidades.dataNasc}" />
+								<input type="text" id="dataNasc" name="dataNasc"
+								class="form-control" value="<fmt:formatDate pattern = "dd/MM/yyyy" 
+         							value = "${entidades.dataNasc}" />" />
 							</div>
 							
 							<div class="form-group">

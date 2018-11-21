@@ -29,19 +29,5 @@ private static final long serialVersionUID = 1L;
 	@ManyToOne
 	@JoinColumn(name = "id_viagem", referencedColumnName = "id")
 	private Viagens viagem;
-	
-	List<Encomendas> listaEncomendas;
-
-	public Encomendas_Viagens() {
-		listaEncomendas = new ArrayList<Encomendas>();	
-	}
-	
-	public void adicionar(Encomendas encomenda){
-		listaEncomendas.add(encomenda);
-	}
-	
-	public void remover(Encomendas encomenda){
-		listaEncomendas.remove(encomenda);
-	}
 
 }

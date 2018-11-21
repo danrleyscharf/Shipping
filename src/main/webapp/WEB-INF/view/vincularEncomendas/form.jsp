@@ -34,7 +34,7 @@
 			}); //Fim submit
 		</script>
 		<script type="text/javascript">
-		function adicionar(id,row) {
+		function adicionar(id,id_encomenda) {
 			swal({   
 				title: "Confirma a inclusão do registro?!",   
 				text: "Isso irá vincular a encomenda à viagem!",   
@@ -46,9 +46,9 @@
 				closeOnConfirm: false 
 				}, 
 				function(){   
-					var destino = '<c:url value="/Encomendas_ViagensController?acao=adicionar&id=' + id + '"/>' + id;
+					var destino = '<c:url value="/vincularEncomendas/adicionar/"/>' + id + '/' + id_encomenda;
 					$.ajax({
-						type : 'POST',
+						type : 'GET',
 						url : destino,
 						success : function(data) {
 							if (data.situacao == "OK"){

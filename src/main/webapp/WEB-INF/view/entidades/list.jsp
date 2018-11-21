@@ -70,7 +70,7 @@
 				<tr id="row_${entidades.id}">
 					<td>${entidades.id}</td>
 					<td>${entidades.nome}</td>
-					<td>${entidades.endereco + ", " + entidades.numero}</td>
+					<td>${entidades.endereco} , ${entidades.numero}</td>
 					<td>${entidades.bairro}</td>
 					<td>${entidades.cidades.cidade}</td>
 					<td>
