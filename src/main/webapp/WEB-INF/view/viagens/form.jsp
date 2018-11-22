@@ -43,8 +43,8 @@
 		<section class="wrapper">	
 				<div class="row">
 		            <div class="col-md-3 col-md-offset-3">	
-		            	<h1>Cadastro de Viagens</h1>
-						<form id="frm" action="<c:url value="/viagens/"/>"
+		            <h1>Cadastro de Viagens</h1>
+					<form id="frm" action="<c:url value="/viagens/"/>"
 								method="POST" class="well span6">
 							
 							<div class="form-group">

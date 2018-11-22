@@ -31,7 +31,7 @@ public class Encomendas_ViagensController {
 		
 	@RequestMapping(value = "/form/{id}", method = RequestMethod.GET)
 	public String form(@PathVariable Long id, Model model){
-		model.addAttribute("encomendas", encomendasRepository.findByEntregue(false));
+		model.addAttribute("encomendas", encomendasRepository.findByEncomendasEntregue(false));
 		model.addAttribute("viagens", viagensRepository.findOne(id));
 		return "vincularEncomendas/form";
 	}
@@ -41,27 +41,6 @@ public class Encomendas_ViagensController {
 			produces = "application/json")
 	@ResponseBody
 	
-	
-	public String salvar(@Valid Encomendas encomendas, BindingResult erros, 
-			Model model){
-		JSONObject retorno = new JSONObject();
-		try{
-			if (erros.hasErrors()){
-				retorno.put("situacao", "ERRO");
-				retorno.put("mensagem", "Falha ao salvar registro!");
-			}else{
-				encomendasRepository.save(encomendas);
-				
-				retorno.put("id", encomendas.getId());
-				retorno.put("situacao", "OK");
-				retorno.put("mensagem", "Registro salvo com sucesso!");
-			}
-		}catch (Exception ex){
-			retorno.put("situacao", "ERRO");
-			retorno.put("mensagem", "Falha ao salvar registro!");
-		}
-		return retorno.toString();
-	}
 	
 	@RequestMapping(value = "/adicionar/{idViagem}/{idEncomenda}", method = RequestMethod.GET,
 			produces="application/json")
@@ -74,8 +53,13 @@ public class Encomendas_ViagensController {
 				retorno.put("situacao", "ERRO");
 				retorno.put("mensagem", "Falha ao salvar registro!");
 			}else{
+
+				Viagens viagem = viagensRepository.findOne(idViagem);
+				Encomendas encomenda = encomendasRepository.findOne(idEncomenda);
 				
-				//encomendas_ViagensRepository.save(encomendas_viagens);
+				encomendas_ViagensRepository.setViagem(viagem);
+				encomendas_ViagensRepository.setEncomenda(encomenda);
+				encomendas_ViagensRepository.save(encomendas_viagens);
 				
 				retorno.put("situacao", "OK");
 				retorno.put("mensagem", "Registro salvo com sucesso!");
@@ -90,19 +74,17 @@ public class Encomendas_ViagensController {
 	@RequestMapping(value = "/remover/{idViagem}/{idEncomenda}", method = RequestMethod.POST,
 			produces="application/json")
 	@ResponseBody
-	public String remover(@Valid Encomendas_Viagens encomendas_viagens, @PathVariable Long idViagem, 
-			@PathVariable Long idEncomenda, BindingResult erros, Model model){
+	public String remover(@PathVariable Long idViagem, 
+	@PathVariable Long idEncomenda, BindingResult erros, Model model){
 		JSONObject retorno = new JSONObject();
 		try{
 			if (erros.hasErrors()){
 				retorno.put("situacao", "ERRO");
-				retorno.put("mensagem", "Falha ao salvar registro!");
+				retorno.put("mensagem", "Falha ao remover registro!");
 			}else{
-				encomendas_ViagensRepository.save(encomendas_viagens);
+
+				encomendas_ViagensRepository.delete(encomendas_viagens);
 				
-				retorno.put("id", encomendas_viagens.getId());
-				retorno.put("idViagem", idViagem);
-				retorno.put("idEncomenda", idEncomenda);
 				retorno.put("situacao", "OK");
 				retorno.put("mensagem", "Registro salvo com sucesso!");
 			}
