@@ -6,7 +6,7 @@ import br.com.shipping.model.Encomendas;
 
 public interface EncomendasRepository extends JpaRepository<Encomendas, Long>{
 
-    public Encomendas findByEncomendasEntregue(boolean entregue);
-    public Encomendas findByEncomendasChaveRastreio(String chaveRastreio);
+    public Encomendas findByEntregue(boolean entregue);
+    public Encomendas findByChaveRastreio(String chaveRastreio);
 
 }

@@ -1,6 +1,5 @@
 package br.com.shipping.controller;
 
-import javax.validation.Valid;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.shipping.model.Encomendas;
 import br.com.shipping.model.Encomendas_Viagens;
+import br.com.shipping.model.Viagens;
 import br.com.shipping.repository.EncomendasRepository;
 import br.com.shipping.repository.Encomendas_ViagensRepository;
 import br.com.shipping.repository.ViagensRepository;
@@ -31,16 +31,10 @@ public class Encomendas_ViagensController {
 		
 	@RequestMapping(value = "/form/{id}", method = RequestMethod.GET)
 	public String form(@PathVariable Long id, Model model){
-		model.addAttribute("encomendas", encomendasRepository.findByEncomendasEntregue(false));
+		model.addAttribute("encomendas", encomendasRepository.findByEntregue(false));
 		model.addAttribute("viagens", viagensRepository.findOne(id));
 		return "vincularEncomendas/form";
 	}
-	
-	
-	@RequestMapping(value = "/", method = RequestMethod.POST, 
-			produces = "application/json")
-	@ResponseBody
-	
 	
 	@RequestMapping(value = "/adicionar/{idViagem}/{idEncomenda}", method = RequestMethod.GET,
 			produces="application/json")
@@ -56,10 +50,11 @@ public class Encomendas_ViagensController {
 
 				Viagens viagem = viagensRepository.findOne(idViagem);
 				Encomendas encomenda = encomendasRepository.findOne(idEncomenda);
+				Encomendas_Viagens encomendasViagens = new Encomendas_Viagens();
 				
-				encomendas_ViagensRepository.setViagem(viagem);
-				encomendas_ViagensRepository.setEncomenda(encomenda);
-				encomendas_ViagensRepository.save(encomendas_viagens);
+				encomendasViagens.setViagem(viagem);
+				encomendasViagens.setEncomenda(encomenda);
+				encomendas_ViagensRepository.save(encomendasViagens);
 				
 				retorno.put("situacao", "OK");
 				retorno.put("mensagem", "Registro salvo com sucesso!");
@@ -83,7 +78,7 @@ public class Encomendas_ViagensController {
 				retorno.put("mensagem", "Falha ao remover registro!");
 			}else{
 
-				encomendas_ViagensRepository.delete(encomendas_viagens);
+				//encomendas_ViagensRepository.delete(encomendas_viagens);
 				
 				retorno.put("situacao", "OK");
 				retorno.put("mensagem", "Registro salvo com sucesso!");
