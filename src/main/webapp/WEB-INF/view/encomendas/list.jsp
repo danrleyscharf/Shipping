@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <%@ taglib tagdir="/WEB-INF/tags/layout" prefix="layout"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <layout:template>
 <jsp:attribute name="cssEspecificos">
@@ -41,8 +41,13 @@
 			}); //Fim swal
 		}
 	</script>
-
-
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript">		
+	$( function() {
+		$( "#dataColeta" ).datepicker();
+		$( "#prevEntrega" ).datepicker();
+		} );
+	</script>
 	</jsp:attribute>
 
 	<jsp:body>
@@ -73,8 +78,10 @@
 					<td>${encomenda.id}</td>
 					<td>${encomenda.descricao}</td>
 					<td>${encomenda.chaveRastreio}</td>
-					<td>${encomenda.dataColeta}</td>
-					<td>${encomenda.prevEntrega}</td>
+					<td><fmt:formatDate pattern = "dd/MM/yyyy" 
+						value="${encomendas.dataColeta}" /></td>
+					<td><fmt:formatDate pattern = "dd/MM/yyyy" 
+						value="${encomendas.prevEntrega}" /></td>
 				    <td>${encomenda.entidadeOrigem.cidades.cidade}</td>
 					<td>${encomenda.entidadeDestino.cidades.cidade}</td>
 					<td>
