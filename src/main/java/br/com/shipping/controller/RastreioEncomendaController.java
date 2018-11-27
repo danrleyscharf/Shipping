@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import br.com.shipping.model.Encomendas;
 import br.com.shipping.repository.CentrosDistribuicaoRepository;
 import br.com.shipping.repository.EncomendasRepository;
-import br.com.shipping.repository.ViagensRepository;
 import br.com.shipping.repository.EntregasRepository;
 
 @Controller
@@ -25,8 +24,6 @@ public class RastreioEncomendaController {
 	@Autowired
 	private EncomendasRepository encomendasRepository;
 	@Autowired
-    private ViagensRepository viagensRepository;
-    @Autowired 
     private EntregasRepository entregasRepository;
     @Autowired 
     private CentrosDistribuicaoRepository centrosDistribuicaoRepository;

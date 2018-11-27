@@ -13,7 +13,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Encomendas_Viagens implements Serializable{
+public class EtinerariosViagens implements Serializable{
 private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -21,8 +21,8 @@ private static final long serialVersionUID = 1L;
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_encomenda", referencedColumnName = "id")
-	private Encomendas encomenda;
+	@JoinColumn(name = "id_etinerarios", referencedColumnName = "id")
+	private Etinerarios etinerario;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_viagem", referencedColumnName = "id")

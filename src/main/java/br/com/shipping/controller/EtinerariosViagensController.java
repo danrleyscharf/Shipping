@@ -1,6 +1,5 @@
 package br.com.shipping.controller;
 
-
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,34 +12,38 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.shipping.model.Encomendas;
 import br.com.shipping.model.Encomendas_Viagens;
+import br.com.shipping.model.Etinerarios;
+import br.com.shipping.model.EtinerariosViagens;
 import br.com.shipping.model.Viagens;
-import br.com.shipping.repository.EncomendasRepository;
-import br.com.shipping.repository.Encomendas_ViagensRepository;
+import br.com.shipping.repository.EtinerariosRepository;
+import br.com.shipping.repository.EtinerariosViagensRepository;
 import br.com.shipping.repository.ViagensRepository;
 
 @Controller
-@RequestMapping("/vincularEncomendas")
-public class Encomendas_ViagensController {
+@RequestMapping("/vincularEtinerarios")
+public class EtinerariosViagensController {
 
 	@Autowired
-	private Encomendas_ViagensRepository encomendas_ViagensRepository;
-	@Autowired
-	private EncomendasRepository encomendasRepository; 
+	private EtinerariosViagensRepository etinerariosViagensRepository;
 	@Autowired
 	private ViagensRepository viagensRepository;
-		
+	@Autowired
+	private EtinerariosRepository etinerariosRepository;
+	
+	
+	
 	@RequestMapping(value = "/form/{id}", method = RequestMethod.GET)
 	public String form(@PathVariable Long id, Model model){
-		model.addAttribute("encomendas", encomendasRepository.findByEntregue(false));
+		model.addAttribute("etinerarios", etinerariosRepository.findAll());
 		model.addAttribute("viagens", viagensRepository.findOne(id));
 		return "vincularEncomendas/form";
 	}
 	
-	@RequestMapping(value = "/adicionar/{idViagem}/{idEncomenda}", method = RequestMethod.GET,
+	@RequestMapping(value = "/adicionar/{idViagem}/{idEtinerario}", method = RequestMethod.GET,
 			produces="application/json")
 	@ResponseBody
 	public String adicionar(@PathVariable Long idViagem, 
-			@PathVariable Long idEncomenda, BindingResult erros, Model model){
+			@PathVariable Long idEtinerario, BindingResult erros, Model model){
 		JSONObject retorno = new JSONObject();
 		try{
 			if (erros.hasErrors()){
@@ -49,12 +52,12 @@ public class Encomendas_ViagensController {
 			}else{
 
 				Viagens viagem = viagensRepository.findOne(idViagem);
-				Encomendas encomenda = encomendasRepository.findOne(idEncomenda);
-				Encomendas_Viagens encomendasViagens = new Encomendas_Viagens();
+				Etinerarios etinerario = etinerariosRepository.findOne(idEtinerario);
+				EtinerariosViagens etinerariosViagens = new EtinerariosViagens();
 				
-				encomendasViagens.setViagem(viagem);
-				encomendasViagens.setEncomenda(encomenda);
-				encomendas_ViagensRepository.save(encomendasViagens);
+				etinerariosViagens.setViagem(viagem);
+				etinerariosViagens.setEtinerario(etinerario);
+				etinerariosViagensRepository.save(etinerariosViagens);
 				
 				retorno.put("situacao", "OK");
 				retorno.put("mensagem", "Registro salvo com sucesso!");
@@ -76,8 +79,7 @@ public class Encomendas_ViagensController {
 				retorno.put("situacao", "ERRO");
 				retorno.put("mensagem", "Falha ao remover registro!");
 			}else{
-
-				encomendas_ViagensRepository.delete(id);
+				etinerariosViagensRepository.delete(id);
 				
 				retorno.put("situacao", "OK");
 				retorno.put("mensagem", "Registro salvo com sucesso!");
@@ -88,5 +90,4 @@ public class Encomendas_ViagensController {
 		}
 		return retorno.toString();
 	}
-	
 }

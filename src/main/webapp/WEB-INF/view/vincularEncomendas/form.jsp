@@ -78,7 +78,7 @@
 				closeOnConfirm: false 
 				}, 
 				function(){   
-					var destino = '<c:url value="/Encomendas_ViagensController/remover/' + id + '/' + id '"/>';
+					var destino = '<c:url value="/Encomendas_ViagensController/remover/' + id '"/>';
 					$.ajax({
 						type : 'POST',
 						url : destino,
@@ -105,31 +105,24 @@
 		            <div class="col-md-3 col-md-offset-3">	
 		            	<h1>Vincular Encomendas à Viagem</h1>
 						<div class="spacer"></div>
-							<table id="dadosViagem" data-id-field="id" data-unique-id="id"
-								class="table table-striped table-bordered display"
-								style="width: 100%">
-								<thead>
-									<tr>
-										<th class="col-md-2" >Código</th>
-										<th>Data de Saída</th>
-										<th>CDD Origem</th>
-										<th>CDD Destino</th>
-										<th>Funcionário</th>
-										<th>Veículo</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach var="viagem" items="${viagens}">
-										<tr id="row_${viagem.id}">
-											<td>${viagem.dataSaida}</td>
-											<td>${viagem.cddOrigem}</td>
-											<td>${viagem.cddDestino}</td>
-											<td>${viagem.funcionarios}</td>
-											<td>${viagem.veiculos}</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
+							<div class="form-group">
+								<label for="id">Código:</label>
+								<input type="text" id="id" name="id" value="${viagens.id}"
+								readonly class="form-control" />
+							</div>		
+							
+							<div class="form-group">
+								<label for="dataSaida">Data de Saida:</label>
+								<input type="text" id="dataSaida" name="dataSaida"
+								class="form-control" value="${viagens.dataSaida}" />
+							</div>
+							
+							<div class="form-group">
+								<label for="dataChegada">Data de Chegada:</label>
+								<input type="text" id="dataChegada" name="dataChegada"
+								class="form-control" value="${viagens.dataChegada}" />
+							</div>
+							
 						<div class="spacer"></div>	
 							<table id="dadosEncomendas" data-id-field="id" data-unique-id="id"
 								class="table table-striped table-bordered display"

@@ -71,8 +71,8 @@
 					<td>${etinerario.id}</td>
 					<td>${etinerario.cidadeOrigem.cidade}</td>
 					<td>${etinerario.cidadeDestino.cidade}</td>
-					<td>${etinerario.codIBGE}</td>
-					<td>${etinerario.cidade}</td>
+					<td>${etinerario.dias}</td>
+					<td>${etinerario.valor}</td>
 					<td>
 						<a class="edit btn btn-primary" title="Editar"
 							href="<c:url value="/etinerarios/form/${etinerario.id}"/>">

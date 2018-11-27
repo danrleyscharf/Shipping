@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.shipping.model.Veiculos;
-import br.com.shipping.model.Viagens;
 import br.com.shipping.repository.CentrosDistribuicaoRepository;
 import br.com.shipping.repository.FuncionariosRepository;
 import br.com.shipping.repository.VeiculosRepository;

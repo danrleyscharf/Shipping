@@ -38,6 +38,10 @@
   		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script type="text/javascript">		
 		$( function() {
+			var fmt = {
+		            dateFormat: $.datepicker.TIMESTAMP
+		        };
+			
 		    $( "#dataNasc" ).datepicker();
 		  } );
 		</script>
@@ -96,7 +100,7 @@
 							
 							<div class="form-group">
 								<label for="cep">CEP:</label>
-								<input type="text" id="cep" name="cep" pattern="d{2}\.\d{3}\-\d{3}"
+								<input type="text" id="cep" name="cep" 
 								class="form-control" value="${entidades.cep}" />
 							</div>
 							

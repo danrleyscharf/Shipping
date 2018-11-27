@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib tagdir="/WEB-INF/tags/layout" prefix="layout"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <layout:template>
 	<jsp:attribute name="cssEspecificos">
 	</jsp:attribute>
@@ -9,7 +10,8 @@
 		<script type="text/javascript">
 
 		$(document).ready(function (){
-				$('#dataSaida').datepicker();
+			$( "#dataSaida" ).datepicker();
+			$( "#dataChegada" ).datepicker();
 			});
 			$("#frm").submit(function() {
 				$.ajax({
@@ -37,6 +39,14 @@
 				return false;
 			}); //Fim submit
 		</script>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script type="text/javascript">		
+		$( function() {
+			$( "#dataSaida" ).datepicker();
+			$( "#dataChegada" ).datepicker();
+		  } );
+		</script>
 	</jsp:attribute>
 
 	<jsp:body>
@@ -56,13 +66,15 @@
 							<div class="form-group">
 								<label for="dataSaida">Data de Saida:</label>
 								<input type="text" id="dataSaida" name="dataSaida"
-								class="form-control" value="${viagens.dataSaida}" />
+								class="form-control" value="<fmt:formatDate pattern = "dd/MM/yyyy" 
+         							value = "${viagens.dataSaida}" />"  />
 							</div>
 							
 							<div class="form-group">
 								<label for="dataChegada">Data de Chegada:</label>
 								<input type="text" id="dataChegada" name="dataChegada"
-								class="form-control" value="${viagens.dataChegada}" />
+								class="form-control" value="<fmt:formatDate pattern = "dd/MM/yyyy" 
+         							value = "${viagens.dataChegada}" />" />
 							</div>
 							
 							<div class="form-group">

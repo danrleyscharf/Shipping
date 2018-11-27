@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <%@ taglib tagdir="/WEB-INF/tags/layout" prefix="layout"%>
 
 <layout:template>
@@ -66,19 +65,19 @@
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="funcionarios" items="${funcionarios}">
-				<tr id="row_${funcionarios.id}">
-					<td>${funcionarios.id}</td>
-					<td>${funcionarios.nome}</td>
-					<td>${funcionarios.usuario.nome}</td>
-					<td>${funcionarios.cargos.descricao}</td>
-					<td>${funcionarios.centrosDistribuicao.descricao}</td>
+				<c:forEach var="funcionario" items="${funcionarios}">
+				<tr id="row_${funcionario.id}">
+					<td>${funcionario.id}</td>
+					<td>${funcionario.nome}</td>
+					<td>${funcionario.usuario.nome}</td>
+					<td>${funcionario.cargos.descricao}</td>
+					<td>${funcionario.centrosDistribuicao.descricao}</td>
 					<td>
 						<a class="edit btn btn-primary" title="Editar"
-							href="<c:url value="/funcionarios/form/${funcionarios.id}"/>">
+							href="<c:url value="/funcionarios/form/${funcionario.id}"/>">
 							<i class="fa fa-pencil" aria-hidden="true"></i></a>
 						<a class="remove btn btn-danger" title="Remover"
-							href="javascript:remover(${funcionarios.id})">
+							href="javascript:remover(${funcionario.id})">
 							<i class="fa fa-trash" aria-hidden="true"></i></a>
 					</td>
 				</tr>

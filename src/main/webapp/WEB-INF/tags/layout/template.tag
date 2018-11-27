@@ -94,7 +94,8 @@
                       </a>
                       <ul class="sub">
                           <li><a  href="<c:url value="/funcionarios/"/>">Funcionários</a></li>
-                      	  <li><a  href="<c:url value="/entidades/"/>">Entidades</a></li>
+                          <li><a  href="<c:url value="/entidades/"/>">Entidades</a></li>
+                          <li><a  href="<c:url value="/cargos/"/>">Cargos</a></li>
                       </ul>
                   </li>
 

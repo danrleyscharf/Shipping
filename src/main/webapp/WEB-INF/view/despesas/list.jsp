@@ -5,7 +5,7 @@
 <%@ taglib tagdir="/WEB-INF/tags/layout" prefix="layout"%>
 
 <layout:template>
-	<jsp:attribute name="cssEspecificos">
+<jsp:attribute name="cssEspecificos">
 </jsp:attribute>
 
 <jsp:attribute name="scriptsEspecificos">
@@ -22,7 +22,7 @@
 				closeOnConfirm: false 
 				}, 
 				function(){   
-					var destino = '<c:url value="/produto/delete/"/>' + id;
+					var destino = '<c:url value="/despesas/delete/"/>' + id;
 					$.ajax({
 						type : 'POST',
 						url : destino,
@@ -41,16 +41,16 @@
 			}); //Fim swal
 		}
 	</script>
-</jsp:attribute>
+
+
+	</jsp:attribute>
 
 	<jsp:body>
-		<div class="container">
-			<div class="starter-template">
-				<h1>Lista de Produtos</h1>
-			</div>
-			<a class="btn btn-primary" href="<c:url value="/produto/form"/>" 
+		<section class="wrapper">
+			<h1>Lista de Despesas</h1>
+			<a class="btn btn-primary" href="<c:url value="/despesas/form"/>" 
 				id="novo"><i class="fa fa-plus" aria-hidden="true"></i> Novo</a>
-			
+			<br />
 			<div class="spacer"></div>
 			<table id="dados" data-id-field="id" data-unique-id="id"
 				class="table table-striped table-bordered display"
@@ -58,35 +58,32 @@
 				<thead>
 					<tr>
 						<th class="col-md-2" >Código</th>
-						<th>Nome</th>
-						<th>Categoria</th>
-						<th class="col-md-2">Valor</th>
+						<th>Descrição</th>
+						<th>Valor</th>
+						<th>Tipo Despesa</th>
 						<th class="col-md-2">Ação</th>
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="produto" items="${produtos}">
-				<tr id="row_${produto.id}">
-					<td>${produto.id}</td>
-					<td>${produto.nome}</td>
-					<td>${produto.valor}</td>
-					<!-- Aqui é exibida a descrição da categoria. O restante da tabela permanece
-					semelhante ao que foi feito com categoria -->
-					<td>${produto.categoria.descricao}</td>
+				<c:forEach var="despesa" items="${Despesas}">
+				<tr id="row_${despesa.id}">
+					<td>${despesa.id}</td>
+					<td>${despesa.descricao}</td>
+					<td>${despesa.valor}</td>
+					<td>${despesa.tiposDespesa.descricao}</td>
 					<td>
-<a class="edit btn btn-primary" href="<c:url value="/produto/form/${produto.id}"/>" 
-title="Editar">
-<i class="fa fa-pencil" aria-hidden="true"></i></a>
-					
-<a class="remove btn btn-danger" href="javascript:remover(${produto.id})" 
-title="Remover">
-<i class="fa fa-trash" aria-hidden="true"></i></a>
+						<a class="edit btn btn-primary" title="Editar"
+							href="<c:url value="/despesas/form/${despesa.id}"/>">
+							<i class="fa fa-pencil" aria-hidden="true"></i></a>
+						<a class="remove btn btn-danger" title="Remover"
+							href="javascript:remover(${despesa.id})">
+							<i class="fa fa-trash" aria-hidden="true"></i></a>
 					</td>
 				</tr>
 			</c:forEach>
 				</tbody>
 			</table>
 			<div class="spacer"></div>
-		</div>
+		</section>
 	</jsp:body>
 </layout:template>
