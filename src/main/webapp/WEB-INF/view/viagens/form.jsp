@@ -89,7 +89,7 @@
 									<option value="">(Selecione)</option>
 									<c:forEach var="cddOrigem" items="${centrosDistribuicao}">
 										<option value="${cddOrigem.id}"
-												${cddOrigem.id==viagens.centrosDistribuicao.id ? 'selected' : ''}>
+												${cddOrigem.id==viagens.cddOrigem.id ? 'selected' : ''}>
 										${cddOrigem.descricao}</option>
 									</c:forEach>
 								</select>	
@@ -101,7 +101,7 @@
 									<option value="">(Selecione)</option>
 									<c:forEach var="cddDestino" items="${centrosDistribuicao}">
 										<option value="${cddDestino.id}"
-												${cddDestino.id==viagens.centrosDistribuicao.id ? 'selected' : ''}>
+												${cddDestino.id==viagens.cddDestino.id ? 'selected' : ''}>
 										${cddDestino.descricao}</option>
 									</c:forEach>
 								</select>	

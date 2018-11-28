@@ -153,7 +153,7 @@
       </section>
 
       <!--main content end-->
-      <!--footer start-->
+      <!--footer start
       <footer class="site-footer">
           <div class="text-center">
               2014 - Alvarez.is
@@ -161,7 +161,7 @@
                   <i class="fa fa-angle-up"></i>
               </a>
           </div>
-      </footer>
+      </footer>-->
       <!--footer end-->
   </section>
 	

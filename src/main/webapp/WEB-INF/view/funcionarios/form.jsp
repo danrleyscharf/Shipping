@@ -92,10 +92,10 @@
 							<label for="Cargos">cargo:</label>
 								<select id="cargos" name="cargo" class="form-control">
 									<option value="">(Selecione)</option>
-									<c:forEach var="cargos" items="${cargos}">
-										<option value="${cargos.id}"
-												${cargos.id==funcionarios.cargos.id ? 'selected' : ''}>
-										${cargos.descricao}</option>
+									<c:forEach var="cargo" items="${cargos}">
+										<option value="${cargo.id}"
+												${cargo.id==funcionarios.cargos.id ? 'selected' : ''}>
+										${cargo.descricao}</option>
 									</c:forEach>
 								</select>	
 							</div>

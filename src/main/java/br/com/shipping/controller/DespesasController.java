@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import br.com.shipping.model.Despesas;
 import br.com.shipping.repository.DespesasRepository;
 import br.com.shipping.repository.TiposDespesaRepository;
+import br.com.shipping.repository.ViagensRepository;
 
 @Controller
 @RequestMapping("/despesas")
@@ -24,6 +25,8 @@ public class DespesasController {
 	private DespesasRepository despesasRepository;
 	@Autowired
 	private TiposDespesaRepository tiposDespesaRepository;
+	@Autowired
+	private ViagensRepository viagensRepository;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String list(Model model){
@@ -34,6 +37,7 @@ public class DespesasController {
 	@RequestMapping(value = "/form", method = RequestMethod.GET)
 	public String form(Model model){
 		model.addAttribute("tiposDespesa", tiposDespesaRepository.findAll());
+		model.addAttribute("viagens", viagensRepository.findAll());
 		return "despesas/form";
 	}
 	

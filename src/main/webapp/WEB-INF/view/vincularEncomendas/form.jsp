@@ -124,7 +124,7 @@
 							</div>
 							
 						<div class="spacer"></div>	
-							<table id="dadosEncomendas" data-id-field="id" data-unique-id="id"
+							<table id="dados" data-id-field="id" data-unique-id="id"
 								class="table table-striped table-bordered display"
 								style="width: 100%">
 								<thead>
