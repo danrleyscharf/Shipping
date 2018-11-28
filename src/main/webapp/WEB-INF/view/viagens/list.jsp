@@ -4,6 +4,8 @@
 
 <%@ taglib tagdir="/WEB-INF/tags/layout" prefix="layout"%>
 
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <layout:template>
 <jsp:attribute name="cssEspecificos">
 </jsp:attribute>
@@ -70,7 +72,8 @@
 				<c:forEach var="viagens" items="${viagens}">
 				<tr id="row_${viagens.id}">
 					<td>${viagens.id}</td>
-					<td>${viagens.dataSaida}</td>
+					<td><fmt:formatDate pattern = "dd/MM/yyyy" 
+         							value = "${viagens.dataSaida}" /></td>
 					<td>${viagens.cddOrigem.descricao}</td>
 					<td>${viagens.cddDestino.descricao}</td>
 					<td>${viagens.funcionarios.nome}</td>

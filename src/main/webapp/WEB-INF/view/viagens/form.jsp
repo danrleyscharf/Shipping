@@ -43,8 +43,8 @@
   		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script type="text/javascript">		
 		$( function() {
-			$( "#dataSaida" ).datepicker();
-			$( "#dataChegada" ).datepicker();
+			$( "#dataSaida" ).datepicker( "option", "dateFormat", "dd/mm/yy" );
+			$( "#dataChegada" ).datepicker("option", "dateFormat", "dd/mm/yy");
 		  } );
 		</script>
 	</jsp:attribute>

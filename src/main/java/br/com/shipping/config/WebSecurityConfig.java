@@ -32,6 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			.failureUrl("/login?error=bad_credentials").permitAll()
 			.and().authorizeRequests()
 				.antMatchers("/usuario/**").permitAll()
+				.antMatchers("/rastreioEncomendas/**").permitAll()
 				.antMatchers("/index/**").hasAnyRole("USER","ADMIN")
 				.antMatchers("/cargos/**").hasRole("USER")
 				.antMatchers("/**").hasRole("USER");
