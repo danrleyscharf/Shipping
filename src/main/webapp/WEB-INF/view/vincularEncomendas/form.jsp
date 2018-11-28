@@ -34,7 +34,7 @@
 			}); //Fim submit
 		</script>
 		<script type="text/javascript">
-		function adicionar(id,id_encomenda) {
+		function adicionar(id,idEncomenda) {
 			swal({   
 				title: "Confirma a inclusão do registro?!",   
 				text: "Isso irá vincular a encomenda à viagem!",   
@@ -46,7 +46,7 @@
 				closeOnConfirm: false 
 				}, 
 				function(){   
-					var destino = '<c:url value="/vincularEncomendas/adicionar/"/>' + id + '/' + id_encomenda;
+					var destino = '<c:url value="/vincularEncomendas/adicionar/"/>' + id + '/' + idEncomenda;
 					$.ajax({
 						type : 'GET',
 						url : destino,
@@ -114,13 +114,13 @@
 							<div class="form-group">
 								<label for="dataSaida">Data de Saida:</label>
 								<input type="text" id="dataSaida" name="dataSaida"
-								class="form-control" value="${viagens.dataSaida}" />
+								readonly class="form-control" value="${viagens.dataSaida}" />
 							</div>
 							
 							<div class="form-group">
 								<label for="dataChegada">Data de Chegada:</label>
 								<input type="text" id="dataChegada" name="dataChegada"
-								class="form-control" value="${viagens.dataChegada}" />
+								readonly class="form-control" value="${viagens.dataChegada}" />
 							</div>
 							
 						<div class="spacer"></div>	
@@ -132,18 +132,19 @@
 										<th class="col-md-2" >Código</th>
 										<th>Descrição</th>
 										<th>Chave de Rastreio</th>
-										<th class="col-md-2">Ação</th>
+										<th class="col-md-2">Anexar</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach var="encomenda" items="${encomendas}">
 										<tr id="row_${encomenda.id}">
+											<td>${encomenda.id}</td>
 											<td>${encomenda.descricao}</td>
 											<td>${encomenda.chaveRastreio}</td>
 											<td>
 												<a class="edit btn btn-primary" title="Editar"
-													href="javascript:adicionar(${dadosViagem.viagem.id},${encomenda.id})">
-													<i class="fa fa-pencil" aria-hidden="true"></i></a>
+													href="javascript:adicionar(${viagem.id},${encomenda.id})">
+													<i class="li_clip" aria-hidden="true"></i></a>
 												<a class="remove btn btn-danger" title="Remover"
 													href="javascript:remover(${encomenda.id})">
 													<i class="fa fa-trash" aria-hidden="true"></i></a>

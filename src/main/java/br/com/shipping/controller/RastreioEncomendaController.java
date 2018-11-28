@@ -26,14 +26,20 @@ public class RastreioEncomendaController {
 	@Autowired
     private EntregasRepository entregasRepository;
     @Autowired 
-    private CentrosDistribuicaoRepository centrosDistribuicaoRepository;
+	private CentrosDistribuicaoRepository centrosDistribuicaoRepository;
+	@Autowired
+	private Encomendas_viagensRepository encomendas_viagensRepository;
+	@Autowired
+	private ViagensRepository viagensRepository;
     
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public String list(@PathVariable Long id, Model model){
-        model.addAttribute("centrosDistribuicao", centrosDistribuicaoRepository.findAll());
+	@RequestMapping(value = "/{chaveRastreio}", method = RequestMethod.GET)
+	public String list(@PathVariable String chaveRastreio, Model model){
         model.addAttribute("entregas", entregasRepository.findAll());
-		model.addAttribute("encomendas", encomendasRepository.findOne(id));
+		model.addAttribute("encomendas", encomendasRepository.findByChaveRastreio(chaveRastreio));
+		model.addAttribute("encomendas_viagens", encomendas_viagensRepository.findByEncomenda(encomendasRepository.getId()));
+		model.addAttribute("viagens", viagensRepository.findById(Encomendas_viagensRepository.getViagens()));
+
 		return "rastreioEncomenda/list";
 	}
 	
