@@ -9,47 +9,93 @@
 </jsp:attribute>
 
 <jsp:attribute name="scriptsEspecificos">
-	</jsp:attribute>
+	<script type="text/javascript">
+		$(document).ready(function (){
+			if()
+		});
+	</script>
+</jsp:attribute>
 
 	<jsp:body>
 		<section class="wrapper">
 			<h1>Rastreio de Encomenda</h1>
+			<h2>Dados da Encomenda Rastreada:</h2>
+			<div class="form-group">
+				<label for="descricao">Descrição:</label>
+				<input type="text" id="descricao" name="descricao" value="${encomendas.descricao}"
+				readonly class="form-control" />
+			</div>
+			<div class="form-group">
+				<label for="chaveRastreio">Chave de Rastreio:</label>
+				<input type="text" id="chaveRastreio" name="chaveRastreio" value="${encomendas.chaveRastreio}"
+				readonly class="form-control" />
+			</div>
+			<div class="form-group">
+				<label for="entidadeOrigem">Remetente:</label>
+				<input type="text" id="entidadeOrigem" name="entidadeOrigem" value="${encomendas.entidadeOrigem.nome}"
+				readonly class="form-control" />
+			</div>
+			<div class="form-group">
+				<label for="entidadeDestino">Destinatário:</label>
+				<input type="text" id="entidadeDestino" name="entidadeDestino" value="${encomendas.entidadeDestino}"
+				readonly class="form-control" />
+			</div>
 			<div class="spacer"></div>
+			<h3>Histórico</h3>
 			<table id="dados" data-id-field="id" data-unique-id="id"
 				class="table table-striped table-bordered display"
 				style="width: 100%">
 				<thead>
 					<tr>
 						<th class="col-md-2" >Código</th>
-						<th>Descrição</th>
-						<th>Chave de Rastreio</th>
-						<th>Data da Coleta</th>
-						<th>Previsão de Entrega</th>
+						<th>Data de Saída</th>
+						<th>Data de Chegada</th>
 						<th>Origem</th>
 						<th>Destino</th>
-						<th class="col-md-2">Ação</th>
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="encomenda" items="${encomendas}">
-				<tr id="row_${encomendas.id}">
-					<td>${encomenda.id}</td>
-					<td>${encomenda.descricao}</td>
-					<td>${encomenda.chaveRastreio}</td>
-					<td>${encomenda.dataColeta}</td>
-					<td>${encomenda.prevEntrega}</td>
-				    <td>${encomenda.entidadeOrigem.cidades.cidade}</td>
-					<td>${encomenda.entidadeDestino.cidades.cidade}</td>
-					<td>
-						<a class="edit btn btn-primary" title="Editar"
-							href="<c:url value="/encomendas/form/${encomenda.id}"/>">
-							<i class="fa fa-pencil" aria-hidden="true"></i></a>
-						<a class="remove btn btn-danger" title="Remover"
-							href="javascript:remover(${encomenda.id})">
-							<i class="fa fa-trash" aria-hidden="true"></i></a>
-					</td>
+				<c:forEach var="viagem" items="${viagens}">
+				<tr id="row_${viagem.id}">
+					<td>${viagem.id}</td>
+					<td><fmt:formatDate pattern = "dd/MM/yyyy" 
+						value = "${viagens.dataSaida}" /> </td>
+						<td><fmt:formatDate pattern = "dd/MM/yyyy" 
+							value = "${viagens.dataChegada}" /> </td>
+					<td>${viagem.cddOrigem.descricao}</td>
+					<td>${viagem.cddDestino.descricao}</td>
 				</tr>
-			</c:forEach>
+				</c:forEach>
+				</tbody>
+			</table>
+			<div class="spacer"></div>
+			<h3>Tentativas de Entrega</h3>
+			<table id="dados" data-id-field="id" data-unique-id="id"
+				class="table table-striped table-bordered display"
+				style="width: 100%">
+				<thead>
+					<tr>
+						<th class="col-md-2" >Código</th>
+						<th>Data de Saída</th>
+						<th>Data de Chegada</th>
+						<th>Origem</th>
+						<th>Destino</th>
+						<th>Saiu pra entrega</th>
+					</tr>
+				</thead>
+				<tbody>
+				<c:forEach var="viagem" items="${viagens}">
+				<tr id="row_${viagem.id}">
+					<td>${viagem.id}</td>
+					<td><fmt:formatDate pattern = "dd/MM/yyyy" 
+						value = "${viagens.dataSaida}" /> </td>
+						<td><fmt:formatDate pattern = "dd/MM/yyyy" 
+							value = "${viagens.dataChegada}" /> </td>
+					<td>${viagem.cddOrigem.descricao}</td>
+					<td>${viagem.cddDestino.descricao}</td>
+					<td>${viagem.entrega}</td>
+				</tr>
+				</c:forEach>
 				</tbody>
 			</table>
 			<div class="spacer"></div>
