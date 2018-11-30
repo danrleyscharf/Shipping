@@ -7,24 +7,7 @@
 	</jsp:attribute>
 	<jsp:attribute name="scriptsEspecificos">
 		<script type="text/javascript">
-			$("#frm").submit(function() {
-				$.ajax({
-					type : $("#frm").attr('method'),
-					url : $("#frm").attr('action'),
-					data : $('#frm').serialize(),
-					success : function(data) {
-						swal(
-							function(){
-								window.location = '<c:url value="/rastreioEncomenda/"/>';
-						});
-					},//Fim success
-					error : function() {
-						swal("Falha!","Falha ao salvar registro.",
-								"error");
-					}
-				});//Fim ajax
-				return false;
-			}); //Fim submit
+			
 		</script>
 	</jsp:attribute>
 
@@ -38,7 +21,7 @@
 							
 							<div class="form-group">
 								<label for="chaveRastreio">Chave de Rastreio:</label>
-								<input type="text" id="id" name="chaveRastreio" value="${encomendas.chaveRastreio}"
+								<input type="text" id="id" name="chaveRastreio" 
 								class="form-control" />
 							</div>		
 

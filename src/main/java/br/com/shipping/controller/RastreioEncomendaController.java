@@ -34,15 +34,16 @@ public class RastreioEncomendaController {
 		return "rastreioEncomenda/form";
 	}
 	
-	@RequestMapping(value = "/{chaveRastreio}", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.POST)
 	@ResponseBody
-	public String list(@PathVariable String chaveRastreio, Model model){
+	public String list(String chaveRastreio, Model model){
+		//INSTANCIAR A LISTA
 		Encomendas encomenda = encomendasRepository.findByChaveRastreio(chaveRastreio);
         model.addAttribute("entregas", entregasRepository.findByEncomendas(encomenda));
 		for(Viagens viagem : viagensRepository.findAll()){
 			for(Encomendas_Viagens ev : encomendas_viagensRepository.findByEncomenda(encomenda)){
 				if(viagem.getId() == ev.getViagem().getId()){
-					model.addAttribute("viagens", viagem);
+					model.addAttribute("viagens", viagem);//ADICIONAR NA LISTA
 				}
 			}
 		}

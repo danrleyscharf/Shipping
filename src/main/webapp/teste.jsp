@@ -96,9 +96,9 @@
 	</jsp:attribute>
 
 	<jsp:body>
-	<div id="map">Teste</div>
-		<section class="wrapper">	
-				<div class="row">
+
+	
+				
 		            <div class="col-md-3 col-md-offset-3">	
 		            	<h1>Cadastro de Históricos</h1>
 						<form id="frm" action="<c:url value="/historicosViagens/"/>"
@@ -155,8 +155,8 @@
 						<br>
 						<button onclick="getLocation()" class="btn btn-default">Obter Localização</button>
 					</div>
-				</div>
-		</section>
-		
+					<div class="" style="clear:both"></div>				
+					<div id="map">Teste</div>
+
 	</jsp:body>
 </layout:template>
