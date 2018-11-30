@@ -33,13 +33,13 @@
 				<div class="row">
 		            <div class="col-md-3 col-md-offset-3">	
 		            	<h1>Rastrear encomenda</h1>
-						<form id="frm" action="<c:url value="/${encomendas.chaveRastreio}"/>"
+						<form id="frm" action="<c:url value="/rastreioEncomenda/"/>"
 								method="POST" class="well span6">
 							
 							<div class="form-group">
 								<label for="chaveRastreio">Chave de Rastreio:</label>
 								<input type="text" id="id" name="chaveRastreio" value="${encomendas.chaveRastreio}"
-								readonly class="form-control" />
+								class="form-control" />
 							</div>		
 
 							<button type="reset" class="btn btn-default">Limpar</button>

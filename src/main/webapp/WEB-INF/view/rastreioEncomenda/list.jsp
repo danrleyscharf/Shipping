@@ -9,11 +9,6 @@
 </jsp:attribute>
 
 <jsp:attribute name="scriptsEspecificos">
-	<script type="text/javascript">
-		$(document).ready(function (){
-			if()
-		});
-	</script>
 </jsp:attribute>
 
 	<jsp:body>
@@ -58,12 +53,13 @@
 				<c:forEach var="viagem" items="${viagens}">
 				<tr id="row_${viagem.id}">
 					<td>${viagem.id}</td>
-					<td><fmt:formatDate pattern = "dd/MM/yyyy" 
+					<td><fmt:formatDate pattern = "dd/mm/yyyy" 
 						value = "${viagens.dataSaida}" /> </td>
-						<td><fmt:formatDate pattern = "dd/MM/yyyy" 
+						<td><fmt:formatDate pattern = "dd/mm/yyyy" 
 							value = "${viagens.dataChegada}" /> </td>
 					<td>${viagem.cddOrigem.descricao}</td>
 					<td>${viagem.cddDestino.descricao}</td>
+					<td></td>
 				</tr>
 				</c:forEach>
 				</tbody>
@@ -76,24 +72,17 @@
 				<thead>
 					<tr>
 						<th class="col-md-2" >Código</th>
-						<th>Data de Saída</th>
-						<th>Data de Chegada</th>
-						<th>Origem</th>
-						<th>Destino</th>
-						<th>Saiu pra entrega</th>
+						<th>Data da Tentativa</th>
+						<th>Observações</th>
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="viagem" items="${viagens}">
-				<tr id="row_${viagem.id}">
-					<td>${viagem.id}</td>
-					<td><fmt:formatDate pattern = "dd/MM/yyyy" 
-						value = "${viagens.dataSaida}" /> </td>
-						<td><fmt:formatDate pattern = "dd/MM/yyyy" 
-							value = "${viagens.dataChegada}" /> </td>
-					<td>${viagem.cddOrigem.descricao}</td>
-					<td>${viagem.cddDestino.descricao}</td>
-					<td>${viagem.entrega}</td>
+				<c:forEach var="entrega" items="${entregas}">
+				<tr id="row_${entrega.id}">
+					<td>${entrega.id}</td>
+					<td><fmt:formatDate pattern = "dd/mm/yyyy" 
+						value = "${entrega.dataEntrega}" /> </td>
+					<td>${entrega.obs}</td>
 				</tr>
 				</c:forEach>
 				</tbody>

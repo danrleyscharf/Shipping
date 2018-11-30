@@ -8,5 +8,5 @@ import br.com.shipping.model.Viagens;
 
 public interface ViagensRepository extends JpaRepository<Viagens, Long>{
 
-	public List<Viagens> findByViagem(Long idViagem);
+	//public List<Viagens> findById(Long id);
 }

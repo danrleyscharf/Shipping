@@ -3,8 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib tagdir="/WEB-INF/tags/layout" prefix="layout"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <layout:template>
 	<jsp:attribute name="cssEspecificos">
+	<link rel="stylesheet" href="/maps/documentation/javascript/cgc/demos.css">
 	</jsp:attribute>
 	<jsp:attribute name="scriptsEspecificos">
 		<script type="text/javascript">
@@ -23,7 +25,7 @@
 							confirmButtonText: "Ok",   
 							closeOnConfirm: false }, 
 							function(){
-								window.location = '<c:url value="/despesas/"/>';
+								window.location = '<c:url value="/historicosViagens/"/>';
 						});
 					},//Fim success
 					error : function() {
@@ -38,54 +40,86 @@
   		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script type="text/javascript">		
 		$( function() {
-		    $( "#dataDespesa" ).datepicker();
+		    $( "#dataHistorico" ).datepicker("option", "dateFormat", "dd/mm/yy");
 		  } );
 		</script>
+		<script>
+			var latitude = document.getElementById("latitude");
+			var longitude = document.getElementById("longitude");
+			function getLocation() {
+				if (navigator.geolocation){
+					navigator.geolocation.getCurrentPosition(showPosition);
+				}else {
+					x.innerHTML="O seu navegador não suporta Geolocalização.";
+				}
+			}
+			function showPosition(position) {
+			  latitude.value = position.coords.latitude;
+			  longitude.value = position.coords.longitude;  
+			  initMap(latitude, longitude);
+			}
+		</script>
+		<script>
+	      function initMap(latitude, longitude) {
+	        var myLatLng = {lat: latitude, lng: longitude};
+	
+	        // Create a map object and specify the DOM element
+	        // for display.
+	        var map = new google.maps.Map(document.getElementById('map'), {
+	          center: myLatLng,
+	          zoom: 10
+	        });
+	
+	        // Create a marker and set its position.
+	        var marker = new google.maps.Marker({
+	          map: map,
+	          position: myLatLng,
+	          title: 'Posição!'
+	        });
+	      }
+	
+	    </script>
+	    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqBd4mX6U4lRLEuNPBCWe08pkU6NzTEn4&callback=initMap"
+        async defer></script>
 	</jsp:attribute>
 
 	<jsp:body>
 		<section class="wrapper">	
 				<div class="row">
 		            <div class="col-md-3 col-md-offset-3">	
-		            	<h1>Cadastro de Despesas</h1>
-						<form id="frm" action="<c:url value="/despesas/"/>"
+		            	<h1>Cadastro de Históricos</h1>
+						<form id="frm" action="<c:url value="/historicosViagens/"/>"
 								method="POST" class="well span6">
 							
 							<div class="form-group">
 								<label for="id">Código:</label>
-								<input type="text" id="id" name="id" value="${despesas.id}"
+								<input type="text" id="id" name="id" value="${historicosViagens.id}"
 								readonly class="form-control" />
 							</div>		
 							
 							<div class="form-group">
 								<label for="descricao">Descrição:</label>
 								<input type="text" id="descricao" name="descricao"
-								class="form-control" value="${despesas.descricao}" />
+								class="form-control" value="${historicosViagens.descricao}" />
 							</div>
 							
 							<div class="form-group">
-								<label for="dataDespesa">Data:</label>
-								<input type="text" id="dataDespesa" name="dataDespesa"
+								<label for="dataHistorico">Data:</label>
+								<input type="text" id="dataHistorico" name="dataHistorico"
 								class="form-control" value="<fmt:formatDate pattern = "dd/mm/yyyy" 
-         							value = "${despesas.dataDespesa}" />" />
+         							value = "${historicosViagens.dataHistorico}" />" />
 							</div>
 							
 							<div class="form-group">
-								<label for="valor">Valor:</label>
-								<input type="text" id="valor" name="valor"
-								class="form-control" value="${despesas.valor}" />
+								<label for="latitude">Latitude:</label>
+								<input type="text" id="latitude" name="latitude"
+								readonly class="form-control" value="${historicosViagens.latitude}" />
 							</div>
 							
 							<div class="form-group">
-							<label for="tiposDespesa">Tipo Despesa:</label>
-								<select id="tiposDespesa" name="tiposDespesa" class="form-control">
-									<option value="">(Selecione)</option>
-									<c:forEach var="tipoDespesa" items="${tiposDespesa}">
-										<option value="${tipoDespesa.id}"
-												${tipoDespesa.id==despesas.tiposDespesa.id ? 'selected' : ''}>
-										${tipoDespesa.descricao}</option>
-									</c:forEach>
-								</select>	
+								<label for="longitude">Longitude:</label>
+								<input type="text" id="longitude" name="longitude"
+								readonly class="form-control" value="${historicosViagens.longitude}" />
 							</div>
 							
 							<div class="form-group">
@@ -94,7 +128,7 @@
 									<option value="">(Selecione)</option>
 									<c:forEach var="viagem" items="${viagens}">
 										<option value="${viagem.id}"
-												${viagem.id==despesas.viagens.id ? 'selected' : ''}>
+												${viagem.id==historicosViagens.viagem.id ? 'selected' : ''}>
 										${viagem.id}</option>
 									</c:forEach>
 								</select>	
@@ -103,8 +137,10 @@
 							<button type="reset" class="btn btn-default">Limpar</button>
 							<button type="submit" class="btn btn-primary">Salvar</button>
 						</form>
+						<button onclick="getLocation()" class="btn btn-default">Obter Localização</button>
 					</div>
 				</div>
 		</section>
+		<div id="map"></div>
 	</jsp:body>
 </layout:template>
