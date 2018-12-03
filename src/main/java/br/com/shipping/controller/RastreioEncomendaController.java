@@ -37,17 +37,18 @@ public class RastreioEncomendaController {
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	@ResponseBody
 	public String list(String chaveRastreio, Model model){
-		//INSTANCIAR A LISTA
+		
+		List <viagens> listaViagens; //INSTANCIAR A LISTA
 		Encomendas encomenda = encomendasRepository.findByChaveRastreio(chaveRastreio);
         model.addAttribute("entregas", entregasRepository.findByEncomendas(encomenda));
 		for(Viagens viagem : viagensRepository.findAll()){
 			for(Encomendas_Viagens ev : encomendas_viagensRepository.findByEncomenda(encomenda)){
 				if(viagem.getId() == ev.getViagem().getId()){
-					model.addAttribute("viagens", viagem);//ADICIONAR NA LISTA
+					listaViagens.add(viagem);
 				}
 			}
 		}
-		
+		model.addAttribute("viagens", listaViagens);
 		return "rastreioEncomenda/list";
 	}
 	

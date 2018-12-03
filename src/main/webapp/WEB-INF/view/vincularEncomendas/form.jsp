@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib tagdir="/WEB-INF/tags/layout" prefix="layout" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <layout:template>
 	<jsp:attribute name="cssEspecificos">
 	</jsp:attribute>
@@ -105,23 +106,24 @@
 		            <div class="col-md-3 col-md-offset-3">	
 		            	<h1>Vincular Encomendas à Viagem</h1>
 						<div class="spacer"></div>
-							<div class="form-group">
-								<label for="id">Código:</label>
-								<input type="text" id="id" name="id" value="${viagens.id}"
-								readonly class="form-control" />
-							</div>		
-							
-							<div class="form-group">
-								<label for="dataSaida">Data de Saida:</label>
-								<input type="text" id="dataSaida" name="dataSaida"
-								readonly class="form-control" value="${viagens.dataSaida}" />
-							</div>
-							
-							<div class="form-group">
-								<label for="dataChegada">Data de Chegada:</label>
-								<input type="text" id="dataChegada" name="dataChegada"
-								readonly class="form-control" value="${viagens.dataChegada}" />
-							</div>
+						<div class="form-group">
+							<table>
+								<tr>
+									<td>Código: </td>
+									<td>${viagens.id}</td>
+								</tr>
+								<tr>
+										<td>Data de Saída: </td>
+										<td><fmt:formatDate pattern = "dd/MM/yyyy" 
+											value = "${viagens.dataSaida}" /></td>
+								</tr>
+								<tr>
+										<td>Data de Chegada: </td>
+										<td><fmt:formatDate pattern = "dd/MM/yyyy" 
+											value = "${viagens.dataChegada}" /></td>
+								</tr>
+							</table>
+						</div>		
 							
 						<div class="spacer"></div>	
 							<table id="dados" data-id-field="id" data-unique-id="id"
