@@ -68,35 +68,41 @@
 			function showPosition(position) {
 			  latitude.value = position.coords.latitude;
 			  longitude.value = position.coords.longitude;  
-			  initMap(latitude.value, longitude.value);
+
+			  var posicao = { lat : position.coords.latitude, lng : position.coords.longitude };
+			  var local = new google.maps.Marker({
+					map : map,
+					position : posicao,
+					title : 'Posição!'
+				});
 			}
 		</script>
 		<script>
-	      function initMap(latitude, longitude) {
-	    	  var myLatLng = {lat: -26.1973, lng: -52.6891};
-	
-	        // Create a map object and specify the DOM element
-	        // for display.
-	        var map = new google.maps.Map(document.getElementById('map'), {
-	          center: myLatLng,
-	          zoom: 10
-	        });
-	
-	        // Create a marker and set its position.
-	        var marker = new google.maps.Marker({
-	          map: map,
-	          position: myLatLng,
-	          title: 'Posição!'
-	        });
-	      }
-	
-	    </script>
+
+			function initMap() {
+
+				var myLatLng = { lat: -25.363, lng: 131.044 };
+
+				// Create a map object and specify the DOM element
+				// for display.
+				var map = new google.maps.Map(document.getElementById('map'), {
+					center : myLatLng,
+					zoom : 14
+				});
+
+				
+				var marker = new google.maps.Marker({
+						map : map,
+						position : myLatLng,
+						title : 'Posição!'
+					});
+			}
+		</script>
 	    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqBd4mX6U4lRLEuNPBCWe08pkU6NzTEn4&callback=initMap"
         async defer></script>
 	</jsp:attribute>
 
 	<jsp:body>
-
 	
 				
 		            <div class="col-md-3 col-md-offset-3">	
@@ -155,8 +161,9 @@
 						<br>
 						<button onclick="getLocation()" class="btn btn-default">Obter Localização</button>
 					</div>
-					<div class="" style="clear:both"></div>				
-					<div id="map">Teste</div>
+					<div id="map" >
+						
+					</div>
 
 	</jsp:body>
 </layout:template>

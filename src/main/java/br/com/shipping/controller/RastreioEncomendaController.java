@@ -1,5 +1,8 @@
 package br.com.shipping.controller;
 
+import java.util.List;
+
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,17 +31,18 @@ public class RastreioEncomendaController {
 	private Encomendas_ViagensRepository encomendas_viagensRepository;
 	@Autowired
 	private ViagensRepository viagensRepository;
+	private List<Viagens> listaViagens;
     
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String list(Model model){
 		return "rastreioEncomenda/form";
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	@ResponseBody
 	public String list(String chaveRastreio, Model model){
 		
-		List <viagens> listaViagens; //INSTANCIAR A LISTA
+		listaViagens = null;
 		Encomendas encomenda = encomendasRepository.findByChaveRastreio(chaveRastreio);
         model.addAttribute("entregas", entregasRepository.findByEncomendas(encomenda));
 		for(Viagens viagem : viagensRepository.findAll()){
@@ -49,7 +53,8 @@ public class RastreioEncomendaController {
 			}
 		}
 		model.addAttribute("viagens", listaViagens);
-		return "rastreioEncomenda/list";
+		
+		return "rastreioEncomendas/list";
 	}
 	
 }

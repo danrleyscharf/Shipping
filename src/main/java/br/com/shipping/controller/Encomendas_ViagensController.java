@@ -1,6 +1,8 @@
 package br.com.shipping.controller;
 
 
+import javax.validation.Valid;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,7 +42,8 @@ public class Encomendas_ViagensController {
 			produces="application/json")
 	@ResponseBody
 	public String adicionar(@PathVariable Long idViagem, 
-			@PathVariable Long idEncomenda, BindingResult erros, Model model){
+			@PathVariable Long idEncomenda, @Valid Encomendas_Viagens encomendas_viagens,
+			BindingResult erros, Model model){
 		JSONObject retorno = new JSONObject();
 		try{
 			if (erros.hasErrors()){

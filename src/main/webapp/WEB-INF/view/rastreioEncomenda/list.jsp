@@ -4,7 +4,7 @@
 
 <%@ taglib tagdir="/WEB-INF/tags/layout" prefix="layout"%>
 
-<layout:template>
+<layout:templateRastreio>
 <jsp:attribute name="cssEspecificos">
 </jsp:attribute>
 
@@ -90,4 +90,4 @@
 			<div class="spacer"></div>
 		</section>
 	</jsp:body>
-</layout:template>
+</layout:templateRastreio>

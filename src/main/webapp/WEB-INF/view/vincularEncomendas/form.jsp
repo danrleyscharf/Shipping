@@ -35,7 +35,7 @@
 			}); //Fim submit
 		</script>
 		<script type="text/javascript">
-		function adicionar(id,idEncomenda) {
+		function adicionar(idViagem,idEncomenda) {
 			swal({   
 				title: "Confirma a inclusão do registro?!",   
 				text: "Isso irá vincular a encomenda à viagem!",   
@@ -47,13 +47,13 @@
 				closeOnConfirm: false 
 				}, 
 				function(){   
-					var destino = '<c:url value="/vincularEncomendas/adicionar/"/>' + id + '/' + idEncomenda;
+					var destino = '<c:url value="/vincularEncomendas/adicionar/"/>' + idViagem + '/' + idEncomenda;
 					$.ajax({
 						type : 'GET',
 						url : destino,
 						success : function(data) {
 							if (data.situacao == "OK"){
-								$('#row_' + id).remove();
+								$('#row_' + id).add();
 								swal("Vinculado!", "Registro vinculado com sucesso.", "success");
 							}else{
 								swal("Erro!", "Falha ao vincular registro.", "error");
@@ -81,7 +81,7 @@
 				function(){   
 					var destino = '<c:url value="/Encomendas_ViagensController/remover/' + id '"/>';
 					$.ajax({
-						type : 'POST',
+						type : 'GET',
 						url : destino,
 						success : function(data) {
 							if (data.situacao == "OK"){
@@ -103,7 +103,6 @@
 	<jsp:body>
 		<section class="wrapper">	
 				<div class="row">
-		            <div class="col-md-3 col-md-offset-3">	
 		            	<h1>Vincular Encomendas à Viagem</h1>
 						<div class="spacer"></div>
 						<div class="form-group">
@@ -144,8 +143,8 @@
 											<td>${encomenda.descricao}</td>
 											<td>${encomenda.chaveRastreio}</td>
 											<td>
-												<a class="edit btn btn-primary" title="Editar"
-													href="javascript:adicionar(${viagem.id},${encomenda.id})">
+												<a class="edit btn btn-primary" title="Anexar"
+													href="javascript:adicionar(${viagens.id},${encomenda.id})">
 													<i class="li_clip" aria-hidden="true"></i></a>
 												<a class="remove btn btn-danger" title="Remover"
 													href="javascript:remover(${encomenda.id})">
@@ -156,7 +155,6 @@
 								</tbody>
 							</table>
 					</div>
-				</div>
 		</section>
 	</jsp:body>
 </layout:template>

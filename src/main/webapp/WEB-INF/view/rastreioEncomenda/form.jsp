@@ -2,7 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib tagdir="/WEB-INF/tags/layout" prefix="layout"%>
-<layout:template>
+<layout:templateRastreio>
 	<jsp:attribute name="cssEspecificos">
 	</jsp:attribute>
 	<jsp:attribute name="scriptsEspecificos">
@@ -16,7 +16,7 @@
 				<div class="row">
 		            <div class="col-md-3 col-md-offset-3">	
 		            	<h1>Rastrear encomenda</h1>
-						<form id="frm" action="<c:url value="/rastreioEncomenda/"/>"
+						<form id="frm" action="<c:url value="/rastreioEncomenda/list"/>"
 								method="POST" class="well span6">
 							
 							<div class="form-group">
@@ -32,4 +32,4 @@
 				</div>
 		</section>
 	</jsp:body>
-</layout:template>
+</layout:templateRastreio>
