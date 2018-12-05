@@ -73,7 +73,7 @@
 			  var local = new google.maps.Marker({
 					map : map,
 					position : posicao,
-					title : 'Posição!'
+					title : 'Posição!',
 				});
 			}
 		</script>

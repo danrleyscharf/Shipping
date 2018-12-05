@@ -53,7 +53,6 @@
 						url : destino,
 						success : function(data) {
 							if (data.situacao == "OK"){
-								$('#row_' + id).add();
 								swal("Vinculado!", "Registro vinculado com sucesso.", "success");
 							}else{
 								swal("Erro!", "Falha ao vincular registro.", "error");
@@ -67,7 +66,7 @@
 		}
 	</script>
 	<script type="text/javascript">
-		function remover(id,row) {
+		function remover(idViagem,idEncomenda) {
 			swal({   
 				title: "Confirma a exclusão do registro?!",   
 				text: "Isso irá desvincular a encomenda da viagem!",   
@@ -79,13 +78,12 @@
 				closeOnConfirm: false 
 				}, 
 				function(){   
-					var destino = '<c:url value="/Encomendas_ViagensController/remover/' + id '"/>';
+					var destino = '<c:url value="/vincularEncomendas/remover/"/>' + idViagem + '/' + idEncomenda;
 					$.ajax({
 						type : 'GET',
 						url : destino,
 						success : function(data) {
 							if (data.situacao == "OK"){
-								$('#row_' + id).remove();
 								swal("Vinculado!", "Registro removido com sucesso.", "success");
 							}else{
 								swal("Erro!", "Falha ao remover registro.", "error");
@@ -147,7 +145,7 @@
 													href="javascript:adicionar(${viagens.id},${encomenda.id})">
 													<i class="li_clip" aria-hidden="true"></i></a>
 												<a class="remove btn btn-danger" title="Remover"
-													href="javascript:remover(${encomenda.id})">
+													href="javascript:remover(${viagens.id},${encomenda.id})">
 													<i class="fa fa-trash" aria-hidden="true"></i></a>
 											</td>
 										</tr>

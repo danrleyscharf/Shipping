@@ -54,9 +54,9 @@
 				<tr id="row_${viagem.id}">
 					<td>${viagem.id}</td>
 					<td><fmt:formatDate pattern = "dd/mm/yyyy" 
-						value = "${viagens.dataSaida}" /> </td>
+						value = "${viagem.dataSaida}" /> </td>
 						<td><fmt:formatDate pattern = "dd/mm/yyyy" 
-							value = "${viagens.dataChegada}" /> </td>
+							value = "${viagem.dataChegada}" /> </td>
 					<td>${viagem.cddOrigem.descricao}</td>
 					<td>${viagem.cddDestino.descricao}</td>
 					<td></td>

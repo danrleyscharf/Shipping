@@ -118,14 +118,8 @@
                           <li><a  href="<c:url value="/despesas/"/>">Despesas</a></li>
                           <li><a  href="<c:url value="/encomendas/"/>">Encomendas</a></li>
                           <li><a  href="<c:url value="/viagens/"/>">Viagens</a></li>
+                          <li><a  href="<c:url value="/historicosViagens/"/>">Históricos Viagens</a></li>
                       </ul>
-                  </li>
-
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-futbol-o"></i>
-                          <span>Materiais</span>
-                      </a>
                   </li>
 
                   <li class="sub-menu">
@@ -135,6 +129,16 @@
                       </a>
                       <ul class="sub">
                           <li><a  href="<c:url value="/veiculos/"/>">Veículos</a></li>
+                      </ul>
+                  </li>
+                  
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-futbol-o"></i>
+                          <span>Relatórios</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="\src\main\resources\Viagens.jasper">Encomendas por Viagem</a></li>
                       </ul>
                   </li>
 

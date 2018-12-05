@@ -1,5 +1,6 @@
 package br.com.shipping.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONObject;
@@ -39,10 +40,9 @@ public class RastreioEncomendaController {
 	}
 	
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
-	@ResponseBody
 	public String list(String chaveRastreio, Model model){
 		
-		listaViagens = null;
+		listaViagens = new ArrayList<>();
 		Encomendas encomenda = encomendasRepository.findByChaveRastreio(chaveRastreio);
         model.addAttribute("entregas", entregasRepository.findByEncomendas(encomenda));
 		for(Viagens viagem : viagensRepository.findAll()){
@@ -54,7 +54,7 @@ public class RastreioEncomendaController {
 		}
 		model.addAttribute("viagens", listaViagens);
 		
-		return "rastreioEncomendas/list";
+		return "rastreioEncomenda/list";
 	}
 	
 }

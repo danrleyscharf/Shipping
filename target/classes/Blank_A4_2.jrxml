@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4_2" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a40e97f4-1a98-4463-9f49-9e844d10525e">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT V.ID,
+	V.DATA_SAIDA,
+	CD.DESCRICAO AS CD_ORIGEM,
+	E.DESCRICAO,
+	E.VALOR
+ FROM VIAGENS V
+ INNER JOIN CENTROS_DISTRIBUICAO CD
+ ON V.ID_CDD_ORIGEM = CD.ID
+ INNER JOIN ENCOMENDAS_VIAGENS EV
+ ON V.ID  = EV.ID_VIAGEM
+ INNER JOIN ENCOMENDAS E
+ ON EV.ID_ENCOMENDA = E.ID
+ GROUP BY V.ID,	V.DATA_SAIDA,	CD_ORIGEM, E.DESCRICAO, E.VALOR]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+	</field>
+	<field name="data_saida" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="data_saida"/>
+	</field>
+	<field name="cd_origem" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cd_origem"/>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="descricao"/>
+	</field>
+	<field name="valor" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="valor"/>
+	</field>
+	<group name="id">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+		<groupHeader>
+			<band height="56">
+				<textField>
+					<reportElement positionType="FixRelativeToBottom" x="81" y="10" width="30" height="20" uuid="65ac32d9-b992-4c28-8b3d-3c1802ff9e30"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="10" width="60" height="20" uuid="d9e2d6fa-3df9-491a-b133-24005b2cf95e"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Viagem:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="120" y="10" width="70" height="20" uuid="1f08a262-ed50-45da-b0d5-42646727dd09"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Data Saída:]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="FixRelativeToBottom" x="200" y="10" width="100" height="20" uuid="2fd7ce38-6daf-4c2e-8b42-1eb93aebb41a"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{data_saida}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="30" width="81" height="20" uuid="b5dccd8f-7eb4-4801-9c70-8ea16583a3e5"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CDD Origem:]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="FixRelativeToBottom" x="80" y="30" width="364" height="20" uuid="0c49f277-1369-4d97-9ac2-77ec13c654ad"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cd_origem}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="111" y="24" width="333" height="30" uuid="b8830087-f116-4868-9bbc-65a477a13247"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Encomendas por Viagem]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="50">
+			<staticText>
+				<reportElement x="0" y="0" width="240" height="20" uuid="cb71eea3-3b3d-49df-9f26-327569e85c5a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c08c4243-4fdd-4def-a7ad-cc587d0c8ebf"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descrição Encomenda]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="0" width="100" height="30" uuid="93dbf3ca-e9c8-461f-9925-f5be96a033a1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7a3fc3a5-d2ba-4ca7-96b1-02f61a875f82"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="10" width="240" height="20" uuid="70a22c89-459e-49ca-b64b-56fdc444b88a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c08c4243-4fdd-4def-a7ad-cc587d0c8ebf"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="10" width="100" height="20" uuid="90360352-40f9-440a-a664-c5e62888de5a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7a3fc3a5-d2ba-4ca7-96b1-02f61a875f82"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

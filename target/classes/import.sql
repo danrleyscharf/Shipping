@@ -1,3 +1,4 @@
+
 INSERT INTO permissoes (descricao) values('ROLE_USER');
 INSERT INTO permissoes (descricao) values('ROLE_ADMIN');
 
