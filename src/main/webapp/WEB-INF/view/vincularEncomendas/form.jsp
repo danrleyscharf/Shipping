@@ -84,7 +84,7 @@
 						url : destino,
 						success : function(data) {
 							if (data.situacao == "OK"){
-								swal("Vinculado!", "Registro removido com sucesso.", "success");
+								swal("Desvinculado!", "Registro desvinculado com sucesso.", "success");
 							}else{
 								swal("Erro!", "Falha ao remover registro.", "error");
 							}

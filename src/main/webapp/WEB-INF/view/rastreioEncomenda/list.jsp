@@ -15,29 +15,30 @@
 		<section class="wrapper">
 			<h1>Rastreio de Encomenda</h1>
 			<h2>Dados da Encomenda Rastreada:</h2>
+			<div class="spacer"></div>
 			<div class="form-group">
-				<label for="descricao">Descrição:</label>
-				<input type="text" id="descricao" name="descricao" value="${encomendas.descricao}"
-				readonly class="form-control" />
-			</div>
-			<div class="form-group">
-				<label for="chaveRastreio">Chave de Rastreio:</label>
-				<input type="text" id="chaveRastreio" name="chaveRastreio" value="${encomendas.chaveRastreio}"
-				readonly class="form-control" />
-			</div>
-			<div class="form-group">
-				<label for="entidadeOrigem">Remetente:</label>
-				<input type="text" id="entidadeOrigem" name="entidadeOrigem" value="${encomendas.entidadeOrigem.nome}"
-				readonly class="form-control" />
-			</div>
-			<div class="form-group">
-				<label for="entidadeDestino">Destinatário:</label>
-				<input type="text" id="entidadeDestino" name="entidadeDestino" value="${encomendas.entidadeDestino}"
-				readonly class="form-control" />
+				<table class="table table-striped table-bordered display">
+					<tr>
+						<td>Encomenda: </td>
+						<td>${encomendas.descricao}</td>
+					</tr>
+					<tr>
+						<td>Chave de Rastreio: </td>
+						<td>${encomendas.chaveRastreio}</td>
+					</tr>
+					<tr>
+						<td>Remetente: </td>
+						<td>${encomendas.entidadeOrigem.nome}</td>
+					</tr>
+					<tr>
+						<td>Destinatário: </td>
+						<td>${encomendas.entidadeDestino.nome}</td>
+					</tr>
+				</table>
 			</div>
 			<div class="spacer"></div>
 			<h3>Histórico</h3>
-			<table id="dados" data-id-field="id" data-unique-id="id"
+			<table id="dadosViagens" data-id-field="id" data-unique-id="id"
 				class="table table-striped table-bordered display"
 				style="width: 100%">
 				<thead>
@@ -53,9 +54,9 @@
 				<c:forEach var="viagem" items="${viagens}">
 				<tr id="row_${viagem.id}">
 					<td>${viagem.id}</td>
-					<td><fmt:formatDate pattern = "dd/mm/yyyy" 
+					<td><fmt:formatDate pattern = "dd/MM/yyyy" 
 						value = "${viagem.dataSaida}" /> </td>
-						<td><fmt:formatDate pattern = "dd/mm/yyyy" 
+						<td><fmt:formatDate pattern = "dd/MM/yyyy" 
 							value = "${viagem.dataChegada}" /> </td>
 					<td>${viagem.cddOrigem.descricao}</td>
 					<td>${viagem.cddDestino.descricao}</td>
@@ -66,7 +67,7 @@
 			</table>
 			<div class="spacer"></div>
 			<h3>Tentativas de Entrega</h3>
-			<table id="dados" data-id-field="id" data-unique-id="id"
+			<table id="dadosEntregas" data-id-field="id" data-unique-id="id"
 				class="table table-striped table-bordered display"
 				style="width: 100%">
 				<thead>

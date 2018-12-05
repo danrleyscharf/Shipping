@@ -30,6 +30,7 @@ public class Encomendas_ViagensController {
 	private EncomendasRepository encomendasRepository; 
 	@Autowired
 	private ViagensRepository viagensRepository;
+	int contador;
 		
 	@RequestMapping(value = "/form/{id}", method = RequestMethod.GET)
 	public String form(@PathVariable Long id, Model model){
@@ -51,16 +52,31 @@ public class Encomendas_ViagensController {
 				retorno.put("mensagem", "Falha ao salvar registro!");
 			}else{
 
+				contador = 0;
+
 				Viagens viagem = viagensRepository.findOne(idViagem);
 				Encomendas encomenda = encomendasRepository.findOne(idEncomenda);
 				Encomendas_Viagens encomendasViagens = new Encomendas_Viagens();
 				
 				encomendasViagens.setViagem(viagem);
 				encomendasViagens.setEncomenda(encomenda);
-				encomendas_ViagensRepository.save(encomendasViagens);
+
+				for(Encomendas_Viagens ev : encomendas_ViagensRepository.findAll()){
+					if((ev.getViagem() == viagem) && (ev.getEncomenda() == encomenda)){
+						contador++;
+					}
+				}
+
+				if(contador > 0){
+					retorno.put("situacao", "ERRO");
+					retorno.put("mensagem", "Registro já foi vinculado!");
+				}else{
+					encomendas_ViagensRepository.save(encomendasViagens);
 				
-				retorno.put("situacao", "OK");
-				retorno.put("mensagem", "Registro salvo com sucesso!");
+					retorno.put("situacao", "OK");
+					retorno.put("mensagem", "Registro salvo com sucesso!");
+				}
+				
 			}
 		}catch (Exception ex){
 			retorno.put("situacao", "ERRO");
@@ -69,10 +85,12 @@ public class Encomendas_ViagensController {
 		return retorno.toString();
 	}
 	
-	@RequestMapping(value = "/remover/{id}", method = RequestMethod.POST,
+	@RequestMapping(value = "/remover/{idViagem}/{idEncomenda}", method = RequestMethod.GET,
 			produces="application/json")
 	@ResponseBody
-	public String remover(@PathVariable Long id, BindingResult erros, Model model){
+	public String remover(@PathVariable Long idViagem, @PathVariable Long idEncomenda, 
+	@Valid Encomendas_Viagens encomendas_viagens, BindingResult erros, Model model){
+		
 		JSONObject retorno = new JSONObject();
 		try{
 			if (erros.hasErrors()){
@@ -80,10 +98,26 @@ public class Encomendas_ViagensController {
 				retorno.put("mensagem", "Falha ao remover registro!");
 			}else{
 
-				encomendas_ViagensRepository.delete(id);
+				Encomendas encomenda = encomendasRepository.findOne(idEncomenda);
+				Viagens viagem = viagemRepository.findOne(idViagem);
 				
-				retorno.put("situacao", "OK");
-				retorno.put("mensagem", "Registro salvo com sucesso!");
+				for(Encomendas_Viagens ev : encomendas_viagensRepository.findByEncomenda(encomenda)){
+					if(ev.getViagem().getId() == viagem.getId()){
+						if( ev <> null){
+							encomendas_ViagensRepository.delete(ev);
+							
+							retorno.put("situacao", "OK");
+							retorno.put("mensagem", "Registro excluído com sucesso!");
+						}else{
+							retorno.put("situacao", "ERRO");
+							retorno.put("mensagem", "Este registro não está vinculado!");
+						}
+						
+					}
+					
+				}
+
+				
 			}
 		}catch (Exception ex){
 			retorno.put("situacao", "ERRO");
