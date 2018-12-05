@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.shipping.model.Encomendas;
 import br.com.shipping.model.Encomendas_Viagens;
+import br.com.shipping.model.Viagens;
 
 public interface Encomendas_ViagensRepository extends JpaRepository<Encomendas_Viagens, Long>{
 

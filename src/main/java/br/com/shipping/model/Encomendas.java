@@ -40,9 +40,6 @@ private static final long serialVersionUID = 1L;
 	@Column(nullable = false)
 	private Date prevEntrega;
 	
-	@Column()
-	private boolean fragil;
-	
 	@Column(nullable = false)
 	private Double altura;
 	
