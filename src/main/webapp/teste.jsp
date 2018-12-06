@@ -4,7 +4,7 @@
 <%@ taglib tagdir="/WEB-INF/tags/layout" prefix="layout"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
-<layout:templateHistorico>
+<layout:template>
 	<jsp:attribute name="cssEspecificos">
 	 <style>
       /* Always set the map height explicitly to define the size of the div
@@ -162,10 +162,8 @@
 						<button onclick="getLocation()" class="btn btn-default">Obter Localização</button>
 					</div>
 					
-
+			<div id="map" class="footer" >
+			</div>
 	</jsp:body>
-	<footer>
-		<div id="map" >
-		</div>
-	</footer>
-</layout:templateHistorico>
+		
+</layout:template>
