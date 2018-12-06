@@ -164,8 +164,8 @@
 					
 
 	</jsp:body>
-	<jsp:footer>
+	<footer>
 		<div id="map" >
 		</div>
-	</jsp:footer>
+	</footer>
 </layout:templateHistorico>
