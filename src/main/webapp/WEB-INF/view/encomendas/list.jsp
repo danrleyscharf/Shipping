@@ -10,6 +10,10 @@
 
 <jsp:attribute name="scriptsEspecificos">
 	<script type="text/javascript">
+	$(document).ready(function (){
+		$( "#dataColeta" ).datepicker();
+		$( "#prevEntrega" ).datepicker();
+		});
 		function remover(id,row) {
 			swal({   
 				title: "Confirma a remoção do registro?!",   
@@ -44,8 +48,8 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript">		
 	$( function() {
-		$( "#dataColeta" ).datepicker();
-		$( "#prevEntrega" ).datepicker();
+		$( "#dataColeta" ).datepicker( "option", "dateFormat", "dd/mm/yy" );
+		$( "#prevEntrega" ).datepicker("option", "dateFormat", "dd/mm/yy");
 		} );
 	</script>
 	</jsp:attribute>
@@ -74,14 +78,14 @@
 				</thead>
 				<tbody>
 				<c:forEach var="encomenda" items="${encomendas}">
-				<tr id="row_${encomendas.id}">
+				<tr id="row_${encomenda.id}">
 					<td>${encomenda.id}</td>
 					<td>${encomenda.descricao}</td>
 					<td>${encomenda.chaveRastreio}</td>
 					<td><fmt:formatDate pattern = "dd/MM/yyyy" 
-						value="${encomendas.dataColeta}" /></td>
+						value="${encomenda.dataColeta}" /></td>
 					<td><fmt:formatDate pattern = "dd/MM/yyyy" 
-						value="${encomendas.prevEntrega}" /></td>
+						value="${encomenda.prevEntrega}" /></td>
 				    <td>${encomenda.entidadeOrigem.cidades.cidade}</td>
 					<td>${encomenda.entidadeDestino.cidades.cidade}</td>
 					<td>

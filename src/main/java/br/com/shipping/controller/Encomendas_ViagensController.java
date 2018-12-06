@@ -99,18 +99,18 @@ public class Encomendas_ViagensController {
 			}else{
 
 				Encomendas encomenda = encomendasRepository.findOne(idEncomenda);
-				Viagens viagem = viagemRepository.findOne(idViagem);
+				Viagens viagem = viagensRepository.findOne(idViagem);
 				
-				for(Encomendas_Viagens ev : encomendas_viagensRepository.findByEncomenda(encomenda)){
+				for(Encomendas_Viagens ev : encomendas_ViagensRepository.findByEncomenda(encomenda)){
 					if(ev.getViagem().getId() == viagem.getId()){
-						if( ev <> null){
+						if( ev.equals(null) ){
+							retorno.put("situacao", "ERRO");
+							retorno.put("mensagem", "Este registro não está vinculado!");
+						}else{
 							encomendas_ViagensRepository.delete(ev);
 							
 							retorno.put("situacao", "OK");
 							retorno.put("mensagem", "Registro excluído com sucesso!");
-						}else{
-							retorno.put("situacao", "ERRO");
-							retorno.put("mensagem", "Este registro não está vinculado!");
 						}
 						
 					}
@@ -121,7 +121,7 @@ public class Encomendas_ViagensController {
 			}
 		}catch (Exception ex){
 			retorno.put("situacao", "ERRO");
-			retorno.put("mensagem", "Falha ao salvar registro!");
+			retorno.put("mensagem", "Falha ao remover registro!");
 		}
 		return retorno.toString();
 	}

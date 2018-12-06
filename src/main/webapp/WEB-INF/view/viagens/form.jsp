@@ -76,13 +76,7 @@
 								class="form-control" value="<fmt:formatDate pattern = "dd/MM/yyyy" 
          							value = "${viagens.dataChegada}" />" />
 							</div>
-							
-							<div class="form-group">
-								<label for="entrega">Viagem de Entrega:</label>
-								<input type="checkbox" id="entrega" name="entrega"
-								class="form-control" value="${viagens.entrega}" />
-							</div>
-							
+														
 							<div class="form-group">
 							<label for="cddOrigem">CDD Origem:</label>
 								<select id="cddOrigem" name="cddOrigem" class="form-control">

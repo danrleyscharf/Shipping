@@ -17,7 +17,7 @@
 			<h2>Dados da Encomenda Rastreada:</h2>
 			<div class="spacer"></div>
 			<div class="form-group">
-				<table class="table table-striped table-bordered display">
+				<table>
 					<tr>
 						<td>Encomenda: </td>
 						<td>${encomendas.descricao}</td>

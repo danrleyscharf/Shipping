@@ -27,10 +27,7 @@ private static final long serialVersionUID = 1L;
 	
 	@Column(nullable = true)
 	private Date dataChegada;
-	
-	@Column()
-	private boolean entrega;
-	
+		
 	@ManyToOne
 	@JoinColumn(name = "id_cddOrigem", referencedColumnName = "id")
 	private CentrosDistribuicao cddOrigem;

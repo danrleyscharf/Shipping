@@ -8,6 +8,10 @@
 	</jsp:attribute>
 	<jsp:attribute name="scriptsEspecificos">
 		<script type="text/javascript">
+		$(document).ready(function (){
+			$( "#dataColeta" ).datepicker();
+			$( "#prevEntrega" ).datepicker();
+			});
 			$("#frm").submit(function() {
 				$.ajax({
 					type : $("#frm").attr('method'),
@@ -35,12 +39,12 @@
 			}); //Fim submit
 		</script>
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script type="text/javascript">		
 		$( function() {
-			$( "#dataColeta" ).datepicker();
-			$( "#prevEntrega" ).datepicker();
-			} );
+			$( "#dataColeta" ).datepicker( "option", "dateFormat", "dd/mm/yy" );
+			$( "#prevEntrega" ).datepicker("option", "dateFormat", "dd/mm/yy");
+		  } );
 		</script>
 	</jsp:attribute>
 
@@ -58,12 +62,6 @@
 								readonly class="form-control" />
 							</div>		
 
-							<div class="form-group">
-								<label for="entregue">Entregue:</label>
-								<input type="checkbox" id="entregue" name="entregue" readonly
-								class="form-control" value="${encomendas.entregue}" />
-							</div>
-							
 							<div class="form-group">
 								<label for="descricao">Descrição:</label>
 								<input type="text" id="descricao" name="descricao"
@@ -90,22 +88,16 @@
 							
 							<div class="form-group">
 								<label for="dataColeta">Coleta:</label>
-								<input type="date" id="dataColeta" name="dataColeta"
+								<input type="text" id="dataColeta" name="dataColeta"
 								class="form-control" value="<fmt:formatDate pattern = "dd/MM/yyyy" 
 								value="${encomendas.dataColeta}" />" />
 							</div>
 							
 							<div class="form-group">
 								<label for="prevEntrega">Previsão de Entrega:</label>
-								<input type="date" id="prevEntrega" name="prevEntrega"
+								<input type="text" id="prevEntrega" name="prevEntrega"
 								class="form-control" value="<fmt:formatDate pattern = "dd/MM/yyyy" 
 								value="${encomendas.prevEntrega}" />" />
-							</div>
-							
-							<div class="form-group">
-								<label for="fragil">Frágil:</label>
-								<input type="checkbox" id="fragil" name="fragil" 
-								class="form-control" value="${encomendas.fragil}" />
 							</div>
 							
 							<div class="form-group">
@@ -132,7 +124,7 @@
 									<option value="">(Selecione)</option>
 									<c:forEach var="entidadeOrigem" items="${entidades}">
 										<option value="${entidadeOrigem.id}"
-												${entidadeOrigem.id==encomendas.entidades.id ? 'selected' : ''}>
+												${entidadeOrigem.id==encomendas.entidadeOrigem.id ? 'selected' : ''}>
 										${entidadeOrigem.nome}</option>
 									</c:forEach>
 								</select>	
@@ -140,12 +132,12 @@
 							
 							<div class="form-group">
 							<label for="entidadeDestino">Entidade de Destino:</label>
-								<select id="entidades" name="entidades" class="form-control">
+								<select id="entidadeDestino" name="entidadeDestino" class="form-control">
 									<option value="">(Selecione)</option>
-									<c:forEach var="entidades" items="${entidades}">
-										<option value="${entidades.id}"
-												${entidades.id==encomendas.entidades.id ? 'selected' : ''}>
-										${entidades.nome}</option>
+									<c:forEach var="entidadeDestino" items="${entidades}">
+										<option value="${entidadeDestino.id}"
+												${entidadeDestino.id==encomendas.entidadeDestino.id ? 'selected' : ''}>
+										${entidadeDestino.nome}</option>
 									</c:forEach>
 								</select>	
 							</div>
