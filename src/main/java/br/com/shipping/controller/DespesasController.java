@@ -44,6 +44,7 @@ public class DespesasController {
 	@RequestMapping(value = "/form/{id}", method = RequestMethod.GET)
 	public String form(@PathVariable Long id, Model model){
 		model.addAttribute("tiposDespesa", tiposDespesaRepository.findAll());
+		model.addAttribute("viagens", viagensRepository.findAll());
 		model.addAttribute("despesas", despesasRepository.findOne(id));
 		return "despesas/form";
 	}

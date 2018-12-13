@@ -90,7 +90,7 @@
 							
 							<div class="form-group">
 							<label for="Cargos">cargo:</label>
-								<select id="cargos" name="cargo" class="form-control">
+								<select id="cargos" name="cargos" class="form-control">
 									<option value="">(Selecione)</option>
 									<c:forEach var="cargo" items="${cargos}">
 										<option value="${cargo.id}"

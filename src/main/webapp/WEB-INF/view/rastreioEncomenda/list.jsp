@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%@ taglib tagdir="/WEB-INF/tags/layout" prefix="layout"%>
-
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <layout:templateRastreio>
 <jsp:attribute name="cssEspecificos">
 </jsp:attribute>
@@ -17,7 +17,7 @@
 			<h2>Dados da Encomenda Rastreada:</h2>
 			<div class="spacer"></div>
 			<div class="form-group">
-				<table>
+				<table class="table table-striped table-bordered display">
 					<tr>
 						<td>Encomenda: </td>
 						<td>${encomendas.descricao}</td>
@@ -81,7 +81,7 @@
 				<c:forEach var="entrega" items="${entregas}">
 				<tr id="row_${entrega.id}">
 					<td>${entrega.id}</td>
-					<td><fmt:formatDate pattern = "dd/mm/yyyy" 
+					<td><fmt:formatDate pattern = "dd/MM/yyyy" 
 						value = "${entrega.dataEntrega}" /> </td>
 					<td>${entrega.obs}</td>
 				</tr>

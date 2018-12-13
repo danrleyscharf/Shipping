@@ -66,7 +66,7 @@
 							<div class="form-group">
 								<label for="dataDespesa">Data:</label>
 								<input type="text" id="dataDespesa" name="dataDespesa"
-								class="form-control" value="<fmt:formatDate pattern = "dd/mm/yyyy" 
+								class="form-control" value="<fmt:formatDate pattern = "dd/MM/yyyy" 
          							value = "${despesas.dataDespesa}" />" />
 							</div>
 							

@@ -41,6 +41,7 @@ public class RastreioEncomendaController {
 		
 		listaViagens = new ArrayList<>();
 		Encomendas encomenda = encomendasRepository.findByChaveRastreio(chaveRastreio);
+		model.addAttribute("encomendas", encomendasRepository.findOne(encomenda.getId()));
         model.addAttribute("entregas", entregasRepository.findByEncomendas(encomenda));
 		for(Viagens viagem : viagensRepository.findAll()){
 			for(Encomendas_Viagens ev : encomendas_viagensRepository.findByEncomenda(encomenda)){

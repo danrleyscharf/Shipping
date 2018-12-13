@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import br.com.shipping.model.Veiculos;
+import br.com.shipping.model.Viagens;
 import br.com.shipping.repository.CentrosDistribuicaoRepository;
 import br.com.shipping.repository.FuncionariosRepository;
 import br.com.shipping.repository.VeiculosRepository;
@@ -59,7 +59,7 @@ public class ViagensController {
 	@RequestMapping(value = "/", method = RequestMethod.POST, 
 			produces = "application/json")
 	@ResponseBody
-	public String salvar(@Valid Veiculos veiculos, BindingResult erros, 
+	public String salvar(@Valid Viagens viagem, BindingResult erros, 
 			Model model){
 		JSONObject retorno = new JSONObject();
 		try{
@@ -67,9 +67,9 @@ public class ViagensController {
 				retorno.put("situacao", "ERRO");
 				retorno.put("mensagem", "Falha ao salvar registro!");
 			}else{
-				veiculosRepository.save(veiculos);
+				viagensRepository.save(viagem);
 				
-				retorno.put("id", veiculos.getId());
+				retorno.put("id", viagem.getId());
 				retorno.put("situacao", "OK");
 				retorno.put("mensagem", "Registro salvo com sucesso!");
 			}

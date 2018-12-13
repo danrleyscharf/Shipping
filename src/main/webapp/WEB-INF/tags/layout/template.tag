@@ -114,10 +114,11 @@
                           <span>Movimentações</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="<c:url value="/despesas/"/>">Despesas</a></li>
-                          <li><a  href="<c:url value="/encomendas/"/>">Encomendas</a></li>
                           <li><a  href="<c:url value="/viagens/"/>">Viagens</a></li>
+                          <li><a  href="<c:url value="/encomendas/"/>">Encomendas</a></li>
+                          <li><a  href="<c:url value="/entregas/"/>">Entregas</a></li>
                           <li><a  href="<c:url value="/historicosViagens/"/>">Históricos Viagens</a></li>
+                          <li><a  href="<c:url value="/despesas/"/>">Despesas</a></li>
                       </ul>
                   </li>
 
@@ -137,7 +138,8 @@
                           <span>Relatórios</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="\src\main\resources\Viagens.jasper">Encomendas por Viagem</a></li>
+                          <li><a  href="<c:url value="/relatorio/funcionarios/"/>">Funcionários por CDD</a></li>
+                          <li><a  href="<c:url value="/relatorio/viagens/"/>">Viagens</a></li>
                       </ul>
                   </li>
 

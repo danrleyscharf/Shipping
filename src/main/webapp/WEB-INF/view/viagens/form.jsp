@@ -8,10 +8,9 @@
 	</jsp:attribute>
 	<jsp:attribute name="scriptsEspecificos">
 		<script type="text/javascript">
-
 		$(document).ready(function (){
-			$( "#dataSaida" ).datepicker();
-			$( "#dataChegada" ).datepicker();
+			$( "#dataColeta" ).datepicker();
+			$( "#prevEntrega" ).datepicker();
 			});
 			$("#frm").submit(function() {
 				$.ajax({
@@ -54,7 +53,7 @@
 				<div class="row">
 		            <div class="col-md-3 col-md-offset-3">	
 		            <h1>Cadastro de Viagens</h1>
-					<form id="frm" action="<c:url value="/viagens/"/>"
+						<form id="frm" action="<c:url value="/viagens/"/>"
 								method="POST" class="well span6">
 							
 							<div class="form-group">

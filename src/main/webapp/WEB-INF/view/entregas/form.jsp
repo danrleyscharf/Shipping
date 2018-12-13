@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib tagdir="/WEB-INF/tags/layout" prefix="layout"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <layout:template>
 	<jsp:attribute name="cssEspecificos">
 	</jsp:attribute>
@@ -32,6 +33,13 @@
 				});//Fim ajax
 				return false;
 			}); //Fim submit
+		</script>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script type="text/javascript">		
+		$( function() {
+		    $( "#dataEntrega" ).datepicker();
+		  } );
 		</script>
 	</jsp:attribute>
 
@@ -64,13 +72,13 @@
 							<div class="form-group">
 								<label for="dataEntrega">Data da entrega:</label>
 								<input type="text" id="dataEntrega" name="dataEntrega"
-								class="form-control" value="${entregas.dataEntrega}" />
+								class="form-control" value="<fmt:formatDate pattern = "dd/MM/yyyy" 
+         							value = "${entregas.dataEntrega}" />" />
 							</div>
 							
 							<div class="form-group">
 								<label for="obs">Observações:</label>
-								<textarea rows="4" cols="50" wrap="hard" maxlength="255" 
-									placeholder="Observações da Entrega"
+								<textarea rows="4" cols="50" wrap="hard" maxlength="255"
 									id="obs" name="obs" maxlength="255"
 									class="form-control" >
 								</textarea>
@@ -79,7 +87,7 @@
 							<div class="form-group">
 								<label for="sucesso">Entrega Realizada:</label>
 								<input type="checkbox" id="sucesso" name="sucesso"
-								class="form-control" value="${entregas.sucesso}" />
+								class="form-control" />
 							</div>
 							
 							<button type="reset" class="btn btn-default">Limpar</button>
