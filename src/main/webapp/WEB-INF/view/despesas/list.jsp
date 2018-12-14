@@ -65,7 +65,7 @@
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="despesa" items="${Despesas}">
+				<c:forEach var="despesa" items="${despesas}">
 				<tr id="row_${despesa.id}">
 					<td>${despesa.id}</td>
 					<td>${despesa.descricao}</td>

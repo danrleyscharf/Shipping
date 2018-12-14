@@ -35,21 +35,20 @@ public class RelatorioController {
 		
 		parametros = parametros == null ? parametros = new HashMap<>() : parametros;
 		
-		// Pega o arquivo .jasper localizado em resources
+		
 		InputStream jasperStream = this.getClass().getResourceAsStream("/relatorios/Funcionarios.jasper");
 		
-		// Cria o objeto JaperReport com o Stream do arquivo jasper
+		
 		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
-		// Passa para o JasperPrint o relatório, os parâmetros e a fonte dos dados, no caso uma conexão ao banco de dados
+		
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, dataSource.getConnection());
 
-		// Configura a respota para o tipo PDF
+		
 		response.setContentType("application/pdf");
-		// Define que o arquivo pode ser visualizado no navegador e também nome final do arquivo
-		// para fazer download do relatório troque 'inline' por 'attachment'
+		
 		response.setHeader("Content-Disposition", "attachment; filename=funcionarios.pdf");
 
-		// Faz a exportação do relatório para o HttpServletResponse
+		
 		final OutputStream outStream = response.getOutputStream();
 		JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
 	}
@@ -59,24 +58,45 @@ public class RelatorioController {
 		
 		parametros = parametros == null ? parametros = new HashMap<>() : parametros;
 		
-		// Pega o arquivo .jasper localizado em resources
+		
 		InputStream jasperStream = this.getClass().getResourceAsStream("/relatorios/Viagens.jasper");
 		
-		// Cria o objeto JaperReport com o Stream do arquivo jasper
+		
 		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
-		// Passa para o JasperPrint o relatório, os parâmetros e a fonte dos dados, no caso uma conexão ao banco de dados
+		
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, dataSource.getConnection());
 
-		// Configura a respota para o tipo PDF
+		
 		response.setContentType("application/pdf");
-		// Define que o arquivo pode ser visualizado no navegador e também nome final do arquivo
-		// para fazer download do relatório troque 'inline' por 'attachment'
+		
 		response.setHeader("Content-Disposition", "attachment; filename=viagens.pdf");
 
-		// Faz a exportação do relatório para o HttpServletResponse
+		
 		final OutputStream outStream = response.getOutputStream();
 		JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
 	}
 	
+	@RequestMapping(value = "/despesas/", method = RequestMethod.GET)
+	public void relDespesas(@RequestParam Map<String, Object> parametros, HttpServletResponse response) throws JRException, SQLException, IOException {
+		
+		parametros = parametros == null ? parametros = new HashMap<>() : parametros;
+		
+		
+		InputStream jasperStream = this.getClass().getResourceAsStream("/relatorios/Despesas.jasper");
+		
+		
+		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
+		
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, dataSource.getConnection());
+
+		
+		response.setContentType("application/pdf");
+		
+		response.setHeader("Content-Disposition", "attachment; filename=despesas.pdf");
+
+		// 
+		final OutputStream outStream = response.getOutputStream();
+		JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+	}
 	
 }

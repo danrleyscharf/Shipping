@@ -30,7 +30,7 @@ public class DespesasController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String list(Model model){
-		model.addAttribute("cidades", despesasRepository.findAll());
+		model.addAttribute("despesas", despesasRepository.findAll());
 		return "despesas/list";
 	}
 	

@@ -60,7 +60,6 @@
 							value = "${viagem.dataChegada}" /> </td>
 					<td>${viagem.cddOrigem.descricao}</td>
 					<td>${viagem.cddDestino.descricao}</td>
-					<td></td>
 				</tr>
 				</c:forEach>
 				</tbody>

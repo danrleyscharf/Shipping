@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%@ taglib tagdir="/WEB-INF/tags/layout" prefix="layout"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <layout:template>
 <jsp:attribute name="cssEspecificos">
@@ -10,6 +11,10 @@
 
 <jsp:attribute name="scriptsEspecificos">
 	<script type="text/javascript">
+	$(document).ready(function (){
+		$( "#dataColeta" ).datepicker();
+		$( "#prevEntrega" ).datepicker();
+		});
 		function remover(id,row) {
 			swal({   
 				title: "Confirma a remoção do registro?!",   
@@ -41,7 +46,12 @@
 			}); //Fim swal
 		}
 	</script>
-
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript">		
+	$( function() {
+		$( "#dataHistorico" ).datepicker( "option", "dateFormat", "dd/mm/yy" );
+		} );
+	</script>
 
 	</jsp:attribute>
 
@@ -75,7 +85,7 @@
 					<td>${historico.latitude}</td>
 					<td>${historico.longitude}</td>
 					<td><fmt:formatDate pattern = "dd/MM/yyyy" 
-         							value = "${historico.dataHistorico}" /></td>
+						value="${historico.dataHistorico}" /> </td>
 					<td>
 						<a class="edit btn btn-primary" title="Editar"
 							href="<c:url value="/historicosViagens/form/${historico.id}"/>">

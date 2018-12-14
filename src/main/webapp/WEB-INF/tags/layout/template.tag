@@ -140,6 +140,7 @@
                       <ul class="sub">
                           <li><a  href="<c:url value="/relatorio/funcionarios/"/>">Funcionários por CDD</a></li>
                           <li><a  href="<c:url value="/relatorio/viagens/"/>">Viagens</a></li>
+                          <li><a  href="<c:url value="/relatorio/despesas/"/>">Despesas</a></li>
                       </ul>
                   </li>
 

@@ -22,6 +22,9 @@
 	</jsp:attribute>
 	<jsp:attribute name="scriptsEspecificos">
 		<script type="text/javascript">
+		$(document).ready(function (){
+			$( "#dataHistorico" ).datepicker();
+			});
 			$("#frm").submit(function() {
 				$.ajax({
 					type : $("#frm").attr('method'),
@@ -52,9 +55,10 @@
   		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script type="text/javascript">		
 		$( function() {
-		    $( "#dataHistorico" ).datepicker("option", "dateFormat", "dd/mm/yy");
-		  } );
+			$( "#dataHistorico" ).datepicker( "option", "dateFormat", "dd/mm/yy" );
+			} );
 		</script>
+  		
 		<script>
 			var latitude = document.getElementById("latitude");
 			var longitude = document.getElementById("longitude");
@@ -67,32 +71,11 @@
 			}
 			function showPosition(position) {
 			  latitude.value = position.coords.latitude;
-			  longitude.value = position.coords.longitude;  
-			  initMap(latitude.value, longitude.value);
+			  longitude.value = position.coords.longitude;
 			}
 		</script>
-		<script>
-	      function initMap(latitude, longitude) {
-	    	  var myLatLng = {lat: -26.1973, lng: -52.6891};
-	
-	        // Create a map object and specify the DOM element
-	        // for display.
-	        var map = new google.maps.Map(document.getElementById('map'), {
-	          center: myLatLng,
-	          zoom: 10
-	        });
-	
-	        // Create a marker and set its position.
-	        var marker = new google.maps.Marker({
-	          map: map,
-	          position: myLatLng,
-	          title: 'Posição!'
-	        });
-	      }
-	
-	    </script>
-	    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqBd4mX6U4lRLEuNPBCWe08pkU6NzTEn4&callback=initMap"
-        async defer></script>
+		
+	    
 	</jsp:attribute>
 
 	<jsp:body>
@@ -137,7 +120,7 @@
 							
 							<div class="form-group">
 							<label for="viagens">Viagem:</label>
-								<select id="viagens" name="viagens" class="form-control">
+								<select id="viagem" name="viagem" class="form-control">
 									<option value="">(Selecione)</option>
 									<c:forEach var="viagem" items="${viagens}">
 										<option value="${viagem.id}"
